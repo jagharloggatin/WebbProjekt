@@ -8,7 +8,6 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export
 
-
 const prototypeAlbum = {
 
     toString: function () { return `${this.id}: ${this.title} - ${this.comment}\n  pictureLocation: ${this.path}\n  albumImage: ${this.headerImage}` },
