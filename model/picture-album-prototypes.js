@@ -2,6 +2,8 @@
 'use strict';  // Try without strict mode
 
 // To use ES6 modules, export and import, you need to create a package.json and set the type ot module.
+
+
 // - open a terminal in your script directory and type: npm init -y
 // - open the package file and add the line at the top: "type":"module", 
 
@@ -10,12 +12,16 @@
 
 const prototypeAlbum = {
 
-    toString: function () { return `${this.id}: ${this.title} - ${this.comment}\n  pictureLocation: ${this.path}\n  albumImage: ${this.headerImage}` },
+    toString: function () {
+        return `${this.id}: ${this.title} - ${this.comment}\n  pictureLocation: ${this.path}\n  albumImage: ${this.headerImage}`
+    },
 }
 
 const prototypePicture = {
 
-    toString: function () { return `${this.id}: ${this.title}\n  imgLoRes: ${this.imgLoRes}\n  imgHiRes: ${this.imgHiRes}\n${this.comment}` },    
+    toString: function () {
+        return `${this.id}: ${this.title}\n  imgLoRes: ${this.imgLoRes}\n  imgHiRes: ${this.imgHiRes}\n${this.comment}`
+    },
 }
 
 //Helper function to get a unique id
