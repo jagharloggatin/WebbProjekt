@@ -53,6 +53,7 @@ body {
     color: white;
 }
 
+
 .container .links li a {
     text-decoration: none;
     color: #444040;
@@ -99,9 +100,9 @@ body {
 #dropdown-menu {
     position: absolute;
     left: 0;
-    background-color: #be6060;
     color: #444040;
     width: 200%;
+    background-color: #be6060;
     top: calc(100% + 1.25rem);
     padding: 5px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0,.2);
