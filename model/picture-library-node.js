@@ -43,7 +43,7 @@ class pictureLibraryNode extends lib.pictureLibrary {
         return library;
     }
 
- }
+}
 
 //debugging purpose only
 /*

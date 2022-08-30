@@ -4,7 +4,7 @@
 //import * as proto from './picture-album-prototypes.js';
 import * as lib from '../model/picture-library-browser.js';
 
-const libraryJSON = "picture-library.json";
+const libraryJSON ="picture-library.json";
 let library;  //Global varibale, Loaded async from the current server in window.load event
 
 
@@ -24,15 +24,63 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 })
 
-window.addEventListener('click', () => {
+/*window.addEventListener('click', async  () => {
+
+    library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+
+    for (const album of library.albums) {
+        console.log(album.title);
+    }
     //just to confirm that the library is accessible as a global variable read async
-    console.log(`library has ${library.albums.length} albums`);
+    console.log (`library has ${library.albums.length} albums`);
+});*/
+
+window.addEventListener('DOMContentLoaded', async  () => {
+
+    library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+
+    for (const album of library.albums) {
+        renderAlbumTitles(`${album.title}`, `${album.path}`);
+    }
 });
+
+// function renderAlbum(title){
+//     const div = document.createElement('div');
+//     div.className = `dropdown-menu`;
+//
+//     const ul = document.createElement('ul');
+//
+//     const li = document.createElement('li');
+//
+//     const a = document.createElement('a');
+//     a.textContent = title;
+//     a.href = "#";
+//
+//     div.append(ul);
+//     ul.append(li);
+//     li.append(a);
+//
+//     const album = document.querySelector('#dropdown-menu');
+//     album.appendChild(div);
+// }
+
+
+function renderAlbumTitles(title, path){
+
+    const a = document.createElement('a');
+    a.textContent = title;
+    a.href = "#";
+
+    const album = document.querySelector('#dropdown-list');
+    album.appendChild(a);
+}
+
+
 
 //Render the images
 function renderImage(src, tag) {
 
-    const div = document.createElement('div');
+/*    const div = document.createElement('div');
     div.className = `FlexItem`;
     div.dataset.albumId = tag;
 
@@ -42,6 +90,18 @@ function renderImage(src, tag) {
 
     const imgFlex = document.querySelector('.FlexWrap');
     imgFlex.appendChild(div);
+
+
+    const div = document.createElement('div');
+    div.className = `imageContainer`;
+    div.dataset.albumId = tag;
+
+    const img = document.createElement('img');
+    img.src = src;
+    div.appendChild(img);
+
+    const imgFlex = document.querySelector('.imageContainer');
+    imgFlex.appendChild(div);*/
 };
 
 
