@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+        <script src="./script/appPictureLibrary.js" type="module"></script>
+        <script src="./script/appNavbarLibrary.js" type="module"></script>
         <link href="/css/navbar.css" rel="stylesheet" type="text/css">
 <!--        <link href="/css/appPictureLibrary.css" rel="stylesheet" type="text/css">-->
         <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Collegiate+One&family=Dancing+Script:wght@500&display=swap"
@@ -24,16 +26,17 @@
                     <span class="bar"></span>
                 </a>
                 <div class="navbar-links">
-                    <ul class="links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="#">Add/Remove</a></li>
-                        <li id="albumLinks">
+                    <ul class="uLinks">
+                        <li class="navList"><a class="aLinks" href="index.html">Home</a></li>
+                        <li class="navList"><a class="aLinks" href="about.html">About</a></li>
+                        <li class="navList"><a class="aLinks" href="#">Add/Remove</a></li>
+                        <li class="navList" id="albumLinks">
                             <div class="dropdown">
-                                <a href="albumGallery.html">Albums</a>
+                                <a class="aLinks" href="albumGallery.html">Albums</a>
                                 <ul id="dropdown-menu">
                                     <li id="dropdown-list">
-<!--                                        <a>All Categories</a>-->
+                                        <a href="albumGallery.html">All Categories</a>
+
                                     </li>
                                 </ul>
                             </div>
@@ -62,14 +65,9 @@
 <!--                 </div>-->
 <!--             </div>-->
 
-<!--        <div class="FlexWrap">-->
-<!--            <div class="FlexItem">-->
 
-<!--            </div>-->
-<!--        </div>-->
-
-        <div class="albumContainer">
-            <div class="albumItem"></div>
+        <div class="FlexWrap">
+            <div class="FlexItem"></div>
 
         </div>
 

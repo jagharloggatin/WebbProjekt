@@ -1,18 +1,21 @@
-dropdownLink = document.getElementById("albumLinks");
-dropdownMenu = document.getElementById("dropdown-menu")
+window.addEventListener('load', async () => {
 
-dropdownMenuShow();
 
-function dropdownMenuShow() {
-    dropdownLink.addEventListener("mouseover", function () {
-        dropdownMenu.style.opacity = "1";
-    });
+    let dropdownLink = document.getElementById("albumLinks");
+    let dropdownMenu = document.getElementById("dropdown-menu")
 
-    dropdownLink.addEventListener("mouseleave", function () {
-        dropdownMenu.style.opacity = "0";
-    });
-}
+    dropdownMenuShow();
 
+    function dropdownMenuShow() {
+        dropdownLink.addEventListener("mouseover", function () {
+            dropdownMenu.style.opacity = "1";
+        });
+
+        dropdownLink.addEventListener("mouseleave", function () {
+            dropdownMenu.style.opacity = "0";
+        });
+    }
+});
 
 
 

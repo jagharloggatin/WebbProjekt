@@ -32,7 +32,7 @@ body {
     list-style: none;
 }
 
-.container .links:first-child {
+.container .uLinks:first-child {
     justify-content: start;
 }
 
@@ -41,20 +41,22 @@ body {
     padding: 0;
 }
 
-.links {
+.uLinks {
     text-decoration: none;
     display: flex;
     list-style: none;
 }
 
-.links li:hover {
+.uLinks li:hover {
     background-color: #be6060;
     cursor: pointer;
+}
+
+.container .uLinks .navList:hover .aLinks{
     color: white;
 }
 
-
-.container .links li a {
+.container .uLinks li a {
     text-decoration: none;
     color: #444040;
     margin: 20px;
@@ -86,6 +88,8 @@ body {
 .active {
     display: flex;
 }
+
+
 
 /*DROPDOWN MENU*/
 
