@@ -2,20 +2,17 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Gallery</title>
-        <!--        <link rel="stylesheet" href="./css/appPictureLibrary.css" />-->
-        <link href="/css/navbar.css" rel="stylesheet">
-        <link href="/css/gallery.css" rel="stylesheet">
+        <title>Title</title>
+        <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+<!--        <link href="/css/appPictureLibrary.css" rel="stylesheet" type="text/css">-->
         <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Collegiate+One&family=Dancing+Script:wght@500&display=swap"
               rel="stylesheet">
-
         <link href="https://fonts.googleapis.com/css2?family=Lato&family=Raleway:ital,wght@1,500&family=Rubik+Moonrocks&family=Source+Sans+Pro:wght@200;600&display=swap"
               rel="stylesheet">
-
-
     </head>
     <body>
 
+        <!-- Navbar -->
         <div class="header">
             <nav class="container">
                 <ul class="logo">
@@ -33,10 +30,10 @@
                         <li><a href="#">Add/Remove</a></li>
                         <li id="albumLinks">
                             <div class="dropdown">
-                                <a href="gallery.html">Albums</a>
+                                <a href="albumGallery.html">Albums</a>
                                 <ul id="dropdown-menu">
                                     <li id="dropdown-list">
-
+<!--                                        <a>All Categories</a>-->
                                     </li>
                                 </ul>
                             </div>
@@ -47,39 +44,42 @@
             </nav>
         </div>
 
-        <!--        <div class="container1">
-                    <div class="container2">
-                        <p>Jonathan Jennifer Alexandra Sahar</p>
-                        <h3>Skalman's Photo Gallery</h3>
-                        <ul class="container3">
-                            <li>
-                                <div class="gallery-container">
-                                    <div class="gallery-item">
-                                        <div class="imageContainer">
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>-->
+<!--                <div class="container1">-->
+<!--                 <div class="container2">-->
+<!--                     <p>Jonathan Jennifer Alexandra Sahar</p>-->
+<!--                     <h3>Skalman's Photo Gallery</h3>-->
+<!--                     <ul class="container3">-->
+<!--                         <li>-->
+<!--                             <div class="gallery-container">-->
+<!--                                 <div class="gallery-item">-->
+<!--                                     <div class="imageContainer">-->
 
-                <div class="FlexWrap">
-      
-                    <!-- Below is being rendered in the js
-                    <div class="FlexItem">
-                    </div>
-                    -->
-                    <div class = "FlexItem"> </div>
-                  </div>
+<!--                                     </div>-->
+<!--                                 </div>-->
+<!--                             </div>-->
+<!--                         </li>-->
+<!--                     </ul>-->
+<!--                 </div>-->
+<!--             </div>-->
+
+<!--        <div class="FlexWrap">-->
+<!--            <div class="FlexItem">-->
+
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="albumContainer">
+            <div class="albumItem"></div>
+
+        </div>
+
 
         <script src="./script/navbar.js"
                 type="text/javascript"></script>
 
         <script src="./script/navbar-dropdown.js"
-                type="text/javascript"></script>
+                type="module"></script>
 
         <script src="./script/appPictureLibrary.js" type="module"></script>
-
     </body>
 </html>

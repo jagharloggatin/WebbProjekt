@@ -17,4 +17,6 @@ for (let i = 0; i < navbarAnchor.length; i++) {
     navbarLi[i].addEventListener("mouseout", function(){
         navbarAnchor[i].style.color = "#444040";
     });
+
+
 }

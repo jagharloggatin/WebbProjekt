@@ -4,46 +4,116 @@
 //import * as proto from './picture-album-prototypes.js';
 import * as lib from '../model/picture-library-browser.js';
 
-const libraryJSON ="picture-library.json";
+const libraryJSON = "picture-library.json";
 let library;  //Global varibale, Loaded async from the current server in window.load event
 
-
 //use the DOMContentLoaded, or window load event to read the library async and render the images
-//window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('load', async () => {
 
-  //  library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading library from JSON on local server
-//library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
+    library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading library from JSON on local server
 
-   // for (const album of library.albums) {
+    for (const album of library.albums) {
+        renderAlbumTitles(`${album.title}`);
+        renderAlbums(`${album.title}`,`${album.headerImage}`, `${album.id}`, `${album.comment}`);
+    }
+});
 
-       // renderImage(album.headerImage, album.id);
-       // for (const picture of album.pictures) {
-          //  renderImage(`${album.path}/${picture.imgLoRes}`, picture.id);
-           // renderImage(`${album.path}/${picture.imgHiRes}`, picture.id);
-      //  }
-   // }
-//})
-
-/*window.addEventListener('click', async  () => {
+window.addEventListener('DOMContentLoaded', async () => {
 
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
     for (const album of library.albums) {
-        console.log(album.title);
+        renderImage(album.headerImage, album.id);
+
+        for (const picture of album.pictures) {
+            renderImage(`${album.path}/${picture.imgLoRes}`, picture.id);
+            renderImage(`${album.path}/${picture.imgHiRes}`, picture.id);
+        }
     }
-    //just to confirm that the library is accessible as a global variable read async
-    console.log (`library has ${library.albums.length} albums`);
-});*/
-
-window.addEventListener('DOMContentLoaded', async  () => {
-
-    library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
-
-    for(const album of library.albums){
-        renderAlbums(`${album.title}`,`${album.headerImage}`,`${album.id}`,`${album.comment}`)
-      
-      }
 });
+
+function renderAlbumTitles(title) {
+
+    const a = document.createElement('a');
+    a.textContent = `${title}`;
+    a.href = "#";
+
+    const album = document.querySelector('#dropdown-list');
+    album.appendChild(a);
+}
+
+function renderAlbums(title, headerImage, id, comment) {
+
+    const div = document.createElement('div');
+    div.className = `albumItem`;
+    div.dataset.albumId = id;
+
+    const p = document.createElement('p');
+    p.textContent = `${title}`;
+    div.appendChild(p);
+
+    const p2 = document.createElement('p');
+    p2.textContent = `${comment}`;
+    div.appendChild(p2);
+
+    const img = document.createElement('img');
+    img.src = `${headerImage}`;
+    div.appendChild(img);
+
+    const imgFlex = document.querySelector('.albumContainer');
+    imgFlex.appendChild(div);
+}
+
+//Render the images
+function renderImage(src, tag) {
+
+    const div = document.createElement('div');
+    div.className = `FlexItem`;
+    div.dataset.albumId = tag;
+
+    const img = document.createElement('img');
+    img.src = src;
+    div.appendChild(img);
+
+    const imgFlex = document.querySelector('.FlexWrap');
+    imgFlex.appendChild(div);
+};
+
+
+// const div = document.createElement('div');
+// div.className = `FlexItem`;
+// div.dataset.albumId = tag;
+//
+// const img = document.createElement('img');
+// img.src = src;
+// div.appendChild(img);
+//
+// const imgFlex = document.querySelector('.imageContainer');
+// imgFlex.appendChild(div);
+
+
+// window.addEventListener('click', async  () => {
+//
+//     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+//
+//     for (const album of library.albums) {
+//         console.log(album.title);
+//     }
+//     //just to confirm that the library is accessible as a global variable read async
+//     console.log (`library has ${library.albums.length} albums`);
+// });
+
+// window.addEventListener('DOMContentLoaded', async  () => {
+//
+//     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+//
+//     for(const album of library.albums){
+//         renderAlbums(`${album.title}`,`${album.headerImage}`,`${album.id}`,`${album.comment}`)
+//         renderAlbumTitles(`${album.title}`,`${album.path}`);
+//
+//       }
+// });
+
 
 // function renderAlbum(title){
 //     const div = document.createElement('div');
@@ -65,71 +135,4 @@ window.addEventListener('DOMContentLoaded', async  () => {
 //     album.appendChild(div);
 // }
 
-
-//function renderAlbumTitles(title, path){
-
-    //const a = document.createElement('a');
-    //a.textContent = title;
-   // a.href = "#";
-
-   // const album = document.querySelector('#dropdown-list');
-   // album.appendChild(a);
-//}
-
-function renderAlbums(title, src,tag,comment){
-
-    const div = document.createElement('div');
-    div.className = `FlexItem`;
-    div.dataset.albumId = tag;
-    
-  const p = document.createElement('p');
-  p.textContent = title;
-  div.appendChild(p);
-  
-  const com = document.createElement('com');
-  com.textContent = comment;
-  div.appendChild(com);
-    
-  const img = document.createElement('img');
-    img.src = src;
-    div.appendChild(img);
-  
-  
-  
-    
-    const imgFlex = document.querySelector('.FlexWrap');
-    imgFlex.appendChild(div);
-  
-  }
-
-
-//Render the images
-//function renderImage(src, tag) {
-
-/*    const div = document.createElement('div');
-    div.className = `FlexItem`;
-    div.dataset.albumId = tag;
-
-    const img = document.createElement('img');
-    img.src = src;
-    div.appendChild(img);
-
-    const imgFlex = document.querySelector('.FlexWrap');
-    imgFlex.appendChild(div);
-
-
-    const div = document.createElement('div');
-    div.className = `imageContainer`;
-    div.dataset.albumId = tag;
-
-    const img = document.createElement('img');
-    img.src = src;
-    div.appendChild(img);
-
-    const imgFlex = document.querySelector('.imageContainer');
-    imgFlex.appendChild(div);*///
-//;
-
-
-
-
+// library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
