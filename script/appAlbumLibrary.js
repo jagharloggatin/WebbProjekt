@@ -16,7 +16,6 @@ window.addEventListener('DOMContentLoaded', async () => {
         renderAlbums(`${album.title}`,`${album.headerImage}`, `${album.id}`, `${album.comment}`);
     }
 
-
 });
 
 function renderAlbums(title, headerImage, id, comment) {
@@ -32,11 +31,14 @@ function renderAlbums(title, headerImage, id, comment) {
     // const p2 = document.createElement('p');
     // p2.textContent = `${comment}`;
     // div.appendChild(p2);
-
     const a = document.createElement('a');
     div.appendChild(a);
     a.className = "album-link";
-    a.href = "pictureGallery.html";
+    a.href = `pictureGallery.html`;
+
+    a.addEventListener("click", () => {
+        localStorage.setItem('selectedId', JSON.stringify(id))
+    });
 
     const img = document.createElement('img');
     img.src = `${headerImage}`;
