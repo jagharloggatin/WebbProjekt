@@ -1,29 +1,50 @@
-.FlexWrap {
+/*.FlexWrap {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+
+/*.FlexWrap img {*/
+/*    height: 300px;*/
+/*    max-width: 20vw;*/
+/*    object-fit: cover;*/
+/*    object-position: 50% 50%;*/
+/*    cursor: pointer;*/
+/*    position: relative;*/
+/*    transition: .5s ease-in-out;*/
+/*}*/
+
+/*.FlexItem {*/
+/*    display: flex;*/
+/*    box-align: center;*/
+/*    align-items: center;*/
+/*    box-pack: center;*/
+/*    flex-wrap: wrap;*/
+/*    padding: 4px;*/
+/*    justify-content: center;*/
+/*    overflow: hidden;*/
+
+/*}*/
+
+
+.albumContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 80vw;
+    margin: 0 auto;
 }
 
-.FlexWrap img {
-    height: 300px;
+.albumItem img {
+    min-height: 50vh;
     max-width: 20vw;
+    padding: 4px;
     object-fit: cover;
     object-position: 50% 50%;
     cursor: pointer;
     position: relative;
     transition: .5s ease-in-out;
-}
-
-.FlexItem {
-    display: flex;
-    box-align: center;
-    align-items: center;
-    box-pack: center;
-    flex-wrap: wrap;
-    padding: 4px;
-    justify-content: center;
-    overflow: hidden;
-
+    z-index: 1;
 }
 
 

@@ -1,6 +1,5 @@
 window.addEventListener('load', async () => {
 
-
     let dropdownLink = document.getElementById("albumLinks");
     let dropdownMenu = document.getElementById("dropdown-menu")
 
