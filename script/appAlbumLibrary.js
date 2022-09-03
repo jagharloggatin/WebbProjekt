@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 });
 
-function renderAlbums(title, headerImage, id, comment) {
+function renderAlbums(albumTitle, headerImage, id, albumComment) {
 
     const div = document.createElement('div');
     div.className = `albumItem`;
@@ -27,7 +27,15 @@ function renderAlbums(title, headerImage, id, comment) {
     // const p = document.createElement('p');
     // p.textContent = `${title}`;
     // div.appendChild(p);
+    const albumTitleDiv = document.createElement('div');
+    albumTitleDiv.className = 'albumTitle';
+    albumTitleDiv.textContent = `${albumTitle}`;
+    div.appendChild(albumTitleDiv);
 
+    const albumCommentDiv = document.createElement('div');
+    albumCommentDiv.className = 'albumComment';
+    albumCommentDiv.textContent = `${albumComment}`;
+    div.appendChild(albumCommentDiv);
     // const p2 = document.createElement('p');
     // p2.textContent = `${comment}`;
     // div.appendChild(p2);
