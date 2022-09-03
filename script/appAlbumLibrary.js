@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     for (const album of library.albums) {
         renderAlbums(`${album.title}`,`${album.headerImage}`, `${album.id}`, `${album.comment}`);
     }
-
 });
 
 function renderAlbums(albumTitle, headerImage, id, albumComment) {

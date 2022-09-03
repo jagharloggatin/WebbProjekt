@@ -33,4 +33,3 @@ function renderImage(src, tag) {
     imgFlex.appendChild(div);
 };
 
-

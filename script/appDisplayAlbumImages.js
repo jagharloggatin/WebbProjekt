@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         }
     }
+
 });
 
 function renderImages(src, tag, imgTitle, imgComment) {
@@ -35,7 +36,7 @@ function renderImages(src, tag, imgTitle, imgComment) {
 
     const imgCommentDiv = document.createElement('div');
     imgCommentDiv.className = 'imgComment';
-    imgCommentDiv.textContent = imgComment;
+    imgCommentDiv.textContent = `${imgComment.substring(0,150)}....`;
     div.appendChild(imgCommentDiv);
 
     const breakLine = document.createElement('br');
@@ -45,6 +46,7 @@ function renderImages(src, tag, imgTitle, imgComment) {
     const imgFlex = document.querySelector('.image-wrap');
     imgFlex.appendChild(div);
 };
+
 
 
 

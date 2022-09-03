@@ -1,12 +1,9 @@
-/*.FlexWrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
 
-.FlexWrap img {
-    height: 300px;
+
+.albumItem img {
+    min-height: 50vh;
     max-width: 20vw;
+    padding: 4px;
     object-fit: cover;
     object-position: 50% 50%;
     cursor: pointer;
@@ -14,129 +11,10 @@
     transition: .5s ease-in-out;
 }
 
-.FlexItem {
-    display: flex;
-    box-align: center;
-    align-items: center;
-    box-pack: center;
-    flex-wrap: wrap;
-    padding: 4px;
-    justify-content: center;
-    overflow: hidden;
-
-}*/
 
 
 
-
-
-
-.albumItem:hover {
-    background-color: black;
-    transition: .3s;
-}
-
-.albumContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    overflow: hidden;
-   
-}
-
-
-.albumItem {
-    display: grid;
-    
-    
-    grid-template-columns: auto;
-    grid-auto-columns: 100px;
-    grid-template-rows: 200px;
-    grid-auto-rows: 90px;
-    /*grid-template-columns: 30px 200px auto 100px;*/
-    /*grid-template-rows: repeat(auto-fill, 300px);*/
-   
-    box-align: center;
-    align-items: center;
-    box-pack: center;
-    max-width: 20vw;
-    justify-content: center;
-    overflow:hidden;
-   
-    
-}
-
-.albumItem img {
-    min-height: 50vh;
-    max-width: 20vw;
-    width: 100%;
-    padding: 4px;
-    object-fit:cover;
-    object-position: 50% 50%;
-    cursor: pointer;
-    position: relative;
-    transition: .5s ease-in-out;
-    z-index: 1;
-    
   
-    
-}
-
-
-@media only screen and (max-width: 600px){
-    .albumItem {
-    
-        flex: 100%;
-        max-width: 100%;
-        height: 100%;
-        
-    
-    }
-  }
-
-.albumItem img:hover {
-    transform:scale(1.5);
-    background-color: black;
-    transition: .5s ease-in-out;
-    opacity: 0.6;
-}
-
-.albumTitle {
-    color: white;
-    font-size: 20px;
-    text-align:center;
-    cursor: pointer;
-    position:absolute;
-    width:20%;
-    
-    transition: .5s ease-in-out;
-}
-
-.albumComment{
-
-    display: flex;
-    color: white;
-    
-    font-size: 10px;
-    grid-row: 2;
-    transition: .5s ease-in-out;
-    
-    
-    
-}
-
-@media only screen and (max-width: 600px){
-    .albumTitle {
-    
-        flex: 100%;
-        max-width: 100%;
-        text-align:center;
-        position: absolute;
-        width:100%;
-    
-    }
-  }
 
 
 
