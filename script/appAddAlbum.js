@@ -51,7 +51,7 @@ function updateJSON() {
 
     button.addEventListener('click', () => {
 
-        let image = document.getElementById('fileInput').value;
+        // let image = document.getElementById('fileInput').value;
         let imgContentArray = [];
         let imageObj = {
             id: Date.now(),

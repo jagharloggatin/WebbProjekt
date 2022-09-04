@@ -111,13 +111,17 @@ body {
     top: calc(100% + 1.25rem);
     padding: 5px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0,.2);
-    opacity: 0;
     text-transform: uppercase;
     z-index: 2;
+    display: none;
 }
 
 #dropdown-menu a:hover{
     color: white;
+}
+
+.uLinks .navList:hover #dropdown-menu{
+    display: flex;
 }
 
 @media screen and (max-width: 880px) {

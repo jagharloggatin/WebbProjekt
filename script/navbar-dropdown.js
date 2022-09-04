@@ -7,11 +7,13 @@ window.addEventListener('load', async () => {
 
     function dropdownMenuShow() {
         dropdownLink.addEventListener("mouseover", function () {
-            dropdownMenu.style.opacity = "1";
+            // dropdownMenu.style.opacity = "1";
+            // dropdownMenu.classList.add("active");
         });
 
         dropdownLink.addEventListener("mouseleave", function () {
-            dropdownMenu.style.opacity = "0";
+            // dropdownMenu.style.opacity = "0";
+            // dropdownMenu.classList.remove("active");
         });
     }
 });
