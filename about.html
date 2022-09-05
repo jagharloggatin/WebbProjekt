@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>About</title>
-        <link rel="stylesheet" href="/css/navbar.css">    
+        <link href="/css/navbar.css" rel="stylesheet">
+        <script src="./script/appNavbarLibrary.js" type="module"></script>    
         <link rel="stylesheet" href="/css/about.css">  
             </head>
     </head>
@@ -19,11 +20,22 @@
                     <span class="bar"></span>
                 </a>
                 <div class="navbar-links">
-                    <ul class="links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="#">Add Picture</a></li>
+                    <ul class="uLinks">
+                        <li class="navList"><a class="aLinks" href="index.html">Home</a></li>
+                        <li class="navList"><a class="aLinks" href="about.html">About</a></li>
+                        <li class="navList"><a class="aLinks" href="pictureGallery.html">PictureDemo</a></li>
+                        <li class="navList" id="albumLinks">
+                            <div class="dropdown">
+                                <a class="aLinks" href="albumGallery.html">Albums</a>
+                                <ul id="dropdown-menu">
+                                    <li id="dropdown-list">
+                                        <a href="albumGallery.html">All Categories</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </li>
                     </ul>
                 </div>
             </nav>

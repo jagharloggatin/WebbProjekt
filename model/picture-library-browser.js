@@ -18,19 +18,19 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
             const url = `../${libraryDir}/${file}`;
             const response = await fetch(url);
             if (response.status >= 200 && response.status < 400) {
-    
+
                 const library = await response.json();
                 lib.pictureLibrary.attachPrototypes(library);
- 
+
                 return library;
-    
+
             } else {
                 // Handle server error
                 // example: INTERNAL SERVER ERROR: 500 error
                 console.log(`${response.statusText}: ${response.status} error`);
             }
         } catch (error) {
-    
+
             alert('Failed to recieved data from server');
             console.log('Failed to recieved data from server');
         }

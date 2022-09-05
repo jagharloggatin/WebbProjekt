@@ -24,6 +24,7 @@ body {
 
 .container {
     display: flex;
+    flex-direction: row;
     justify-content: start;
     align-content: start;
 }
@@ -32,7 +33,7 @@ body {
     list-style: none;
 }
 
-.container .links:first-child {
+.container .uLinks:first-child {
     justify-content: start;
 }
 
@@ -41,19 +42,22 @@ body {
     padding: 0;
 }
 
-.links {
+.uLinks {
     text-decoration: none;
     display: flex;
     list-style: none;
 }
 
-.links li:hover {
+.uLinks li:hover {
     background-color: #be6060;
     cursor: pointer;
+}
+
+.container .uLinks .navList:hover .aLinks{
     color: white;
 }
 
-.container .links li a {
+.container .uLinks li a {
     text-decoration: none;
     color: #444040;
     margin: 20px;
@@ -86,7 +90,48 @@ body {
     display: flex;
 }
 
+
+
+/*DROPDOWN MENU*/
+
+.dropdown {
+    position: relative;
+}
+
+#dropdown-menu ul {
+    padding: 0;
+}
+
+#dropdown-menu {
+    position: absolute;
+    left: 0;
+    color: #444040;
+    width: 200%;
+    background-color: #be6060;
+    top: calc(100% + 1.25rem);
+    padding: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0,.2);
+    text-transform: uppercase;
+    z-index: 2;
+    display: none;
+}
+
+#dropdown-menu a:hover{
+    color: white;
+}
+
+.uLinks .navList:hover #dropdown-menu{
+    display: flex;
+}
+
 @media screen and (max-width: 880px) {
+
+    #dropdown-menu {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+    }
+
 
     .header {
         height: auto;
@@ -142,6 +187,12 @@ body {
 }
 
 @media screen and (max-width: 680px) {
+
+    #dropdown-menu {
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+    }
 
     .header {
         height: auto;

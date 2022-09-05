@@ -1,0 +1,13 @@
+.formContainer {
+    margin: 5% 10% 0 10%;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+input {
+    height: 30px;
+}

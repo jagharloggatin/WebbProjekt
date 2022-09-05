@@ -10,15 +10,20 @@ body {
   background-color: indigo;
 	font-family: 'Oswald', sans-serif;
   width: 100%;
-  
   display: flex;
   flex-wrap: wrap;          /* test with wrap nowrap */
   align-items: center;      /* alignment along cross axis - center flex-start flex-end */
-  justify-content:space-evenly;  /* alignment along main axis - center flex-start flex-end space-evenly space-between space-around */
 }
 
 .FlexItem {
-  width: 200px;            /* fixed size will demonstrate the wrap */
+    min-height: 20vh;
+    max-width: 20vw;
+    padding: 4px;
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    position: relative;
+    transition: .5s ease-in-out;
 }
 
 img {
