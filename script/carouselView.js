@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         if(album.id === savedAlbumId){
             for (const picture of album.pictures) {
                 renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment);
+                
             }
         }
     }
@@ -20,14 +21,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 function renderImages(src, tag, imgTitle, imgComment) {
-
-    const div = document.createElement('div');
+  const div = document.createElement('div');
     div.className = `image-item`;
     div.dataset.albumId = tag;
 
+    //const a = document.createElement('a');
     const img = document.createElement('img');
     img.src = src;
     div.appendChild(img);
+    //div.appendChild(a);
 
     const imgTitleDiv = document.createElement('div');
     imgTitleDiv.className = 'imgTitle';
@@ -45,8 +47,13 @@ function renderImages(src, tag, imgTitle, imgComment) {
 
     const imgFlex = document.querySelector('.image-wrap');
     imgFlex.appendChild(div);
+   
+    //img.addEventListener('click',()=>{
+    //console.log(img.src);
+   // a.href = img.src;
+   // })
 
-    const lightbox = document.createElement('div')
+const lightbox = document.createElement('div')
 lightbox.id = 'lightbox'
 document.body.appendChild(lightbox)
 
@@ -68,9 +75,11 @@ images.forEach(image => {
 })
 
 lightbox.addEventListener('click', e => {
-    if (e.target !== e.currentTarget) return
-    lightbox.classList.remove('active')
-  })
+  if (e.target !== e.currentTarget) return
+  lightbox.classList.remove('active')
+})
+
+
 };
 
 
