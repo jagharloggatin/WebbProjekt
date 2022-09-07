@@ -86,9 +86,9 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.active {
-    display: flex;
-}
+/*.active {*/
+/*    display: flex;*/
+/*}*/
 
 
 

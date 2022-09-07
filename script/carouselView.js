@@ -69,8 +69,6 @@ images.forEach(image => {
       lightbox.removeChild(lightbox.firstChild)
     }
     lightbox.appendChild(img)
-    
-    
   })
 })
 

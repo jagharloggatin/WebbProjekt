@@ -14,31 +14,34 @@ const multer = require("multer");
 const app = express();
 const port = 3000;
 
-app.get('/album', (req, res) => {
-    res.send(`
-    <h2>Add Album</h2>
-    <form action="/api/upload/Album" enctype="multipart/form-data" method="post">
-      <div>Text field title: <input type="text" name="title" /></div>
-      <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
-      <input type="submit" value="Upload" />
-    </form>
-  `);
-});
+const appDir = 'app-data';
+const appJson = 'directories.json';
 
-app.get('/picture', (req, res) => {
-    res.send(`
-    <h2>Add Picture</h2>
-    <form action="/api/upload/Picture" enctype="multipart/form-data" method="post">
-      <div>Text field title: <input type="text" name="title" /></div>
-      <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
-      <input type="submit" value="Upload" />
-    </form>
-  `);
-});
+// app.get('/album', (req, res) => {
+//     res.send(`
+//     <h2>Add Album</h2>
+//     <form action="/api/upload/Album" enctype="multipart/form-data" method="post">
+//       <div>Text field title: <input type="text" name="title" /></div>
+//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
+//       <input type="submit" value="Upload" />
+//     </form>
+//   `);
+// });
+
+// app.get('/picture', (req, res) => {
+//     res.send(`
+//     <h2>Add Picture</h2>
+//     <form action="/api/upload/Picture" enctype="multipart/form-data" method="post">
+//       <div>Text field title: <input type="text" name="title" /></div>
+//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
+//       <input type="submit" value="Upload" />
+//     </form>
+//   `);
+// });
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './app-data/library')
+        cb(null, 'app-data/library')
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + '--' + path.extname(file.originalname));
@@ -51,27 +54,58 @@ app.use(cors({
     origin: '*'
 }));
 
-let dir = './app-data/library/pictures/';
+let dir = 'app-data/library/pictures/hey';
 
-app.post('/api/upload/Album', (req, res, next) => {
-    const form = formidable({ multiples: true });
+app.post('/api/upload/album', (req, res, next) => {
+    const form = formidable();
+
+
+
     form.parse(req, (err, fields, files) => {
         if (err) {
-            next(err);
             return;
         }
+
         writeJSON('albumCache.json', {err, fields, files});
         res.json({ fields, files });
         dir += fields.title;
-    });
 
-    fs.mkdir(dir, { recursive: true }, (err) => {
-        if (err) {
-            throw err;
+        console.log('POST body:', fields);
+
+        let dirStruct = [];
+        if (fileExists(appJson))
+            dirStruct  = readJSON(appJson);
+
+        //get the data sent over from browser
+        const dirToCreate = fields['directory'];
+
+
+
+        //create the directory
+        const pathToCreate = path.join(__dirname, appDir, dirToCreate);
+        if (pathToCreate != '' && !fs.existsSync(path.resolve(pathToCreate)))
+        {
+            //make sure appDir exists
+            const appDataPath = path.join(__dirname, appDir);
+            if (!fs.existsSync(path.resolve(appDataPath)))
+                fs.mkdirSync(path.resolve(appDataPath));
+
+            //create the directory
+            if (!fs.existsSync(path.resolve(pathToCreate)))
+                fs.mkdirSync(path.resolve(pathToCreate));
+
+            //update the json file
+            dirStruct.push(dirToCreate)
+            writeJSON(appJson, dirStruct);
+
         }
-        console.log("Directory is created.");
+
+        //send success response
+        res.sendStatus(200);
     });
 });
+
+
 
 app.post('/api/upload/Picture', (req, res, next) => {
     const form = formidable({ multiples: true });
@@ -85,35 +119,9 @@ app.post('/api/upload/Picture', (req, res, next) => {
         res.json({ fields, files });
         dir += fields.title;
     });
-    res.redirect('/upload')
+
 });
 
-app.get('/upload', (req, res) => {
-
-    res.send(fileStorageEngine.getFilename);
-});
-// const dir = `./app-data/library/pictures/abc3.json`
-
-
-
-
-
-// const json = readJSON(`./app-data/library/pictures/abc3.json`);
-
-// let dir = './app-data/library/pictures/';
-// for (let i = 0; i < dir.length; i++) {
-//     dir += json[i].title;
-// }
-
-// app.post('/api/upload', upload.single('someExpressFiles'), (req, res) => {
-//
-//     console.log(fileStorageEngine.getFilename);
-// });
-
-// app.get('/api/upload', function(req, res) {
-//     let abc = readJSON('picture-library.json');
-//     console.log(abc);
-// });
 
 function writeJSON(fname, obj) {
     const dir = path.join(applicationDir, `/${libraryDir}`);
@@ -128,6 +136,10 @@ function readJSON(fname) {
     return obj;
 }
 
+function fileExists(fname) {
+    const appDataDir = path.join(__dirname, appDir);
+    return fs.existsSync(path.resolve(appDataDir, fname));
+}
 
 
 
