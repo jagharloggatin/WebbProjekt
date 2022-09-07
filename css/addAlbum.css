@@ -11,3 +11,16 @@
 input {
     height: 30px;
 }
+
+#display-image{
+    width: 400px;
+    height: 225px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.albumContainer {
+    margin: 0 auto;
+}

@@ -25,9 +25,13 @@ function renderImages(src, tag, imgTitle, imgComment) {
     div.className = `image-item`;
     div.dataset.albumId = tag;
 
+    const a = document.createElement('a');
+
     const img = document.createElement('img');
     img.src = src;
-    div.appendChild(img);
+
+    a.appendChild(img);
+    div.appendChild(a);
 
     const imgTitleDiv = document.createElement('div');
     imgTitleDiv.className = 'imgTitle';
@@ -42,7 +46,6 @@ function renderImages(src, tag, imgTitle, imgComment) {
     const breakLine = document.createElement('br');
     div.appendChild(breakLine);
 
-
     const imgFlex = document.querySelector('.image-wrap');
     imgFlex.appendChild(div);
 
@@ -50,6 +53,8 @@ function renderImages(src, tag, imgTitle, imgComment) {
 lightbox.id = 'lightbox'
 document.body.appendChild(lightbox)
 
+
+}
 
 
 const images = document.querySelectorAll('img')
@@ -71,6 +76,10 @@ lightbox.addEventListener('click', e => {
     if (e.target !== e.currentTarget) return
     lightbox.classList.remove('active')
   })
-};
+
+    img.addEventListener('click', () => {
+        console.log(img.src);
+        a.href=img.src;
+    })
 
 
