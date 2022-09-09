@@ -1,14 +1,15 @@
+
 .textDiv {
   text-align: start;
   margin-top: 5%;
 }
 
-.textDiv h3{
+.textDiv h3 {
   font-family: "Aboreto";
   font-size: 30px;
 }
 
-.textDiv p{
+.textDiv p {
   font-family: "Aboreto";
 }
 
@@ -28,24 +29,28 @@
 
 .image-wrap {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
   overflow: hidden;
 }
+
+.buttonDiv {
+  display: inline-flex;
+  flex-direction: row;
+}
+
 
 .image-item {
   display: grid;
   box-align: center;
   align-items: center;
-  box-pack: center;
+  /*box-pack: center;*/
   max-width: 20vw;
   justify-content: center;
   overflow: hidden;
 }
 
 .image-item img {
-  min-height: 50vh;
+  min-height: 60vh;
   max-width: 20vw;
   padding: 4px;
   object-fit: cover;
@@ -57,7 +62,7 @@
 }
 
 .image-item img:hover {
-  transform:scale(1.1);
+  transform: scale(1.5);
   background-color: black;
   transition: .5s ease-in-out;
   opacity: 0.6;
@@ -69,82 +74,7 @@
   cursor: pointer;
   text-align: center;
   position: absolute;
-  width:20%;
+  width: 20%;
   transition: .5s ease-in-out;
 }
 
-.imgComment {
-  display: flex;
-  color: white;
-  font-size: 10px;
-  grid-row: 2;
-  justify-content: center;
-  align-items: center;
-  transition: .5s ease-in-out;
-}
-
-
-
-
-#lightbox {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .9);
-  display: none;
-}
-
-#lightbox.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 80%;
-  padding: 4px;
-  background-color: black;
-  border: 2px solid white;
-}
-
-.carousel-actions {
-  display: flex;
-  width: 100%;
-  justify-content: space-between; /* put space between the navigation buttons */
-  position: absolute; /* position navigation buttons on top */
-  top: 50%; /* center navigation buttons on the slide */
- transform: translateY(-50%); /* align navigation buttons */
-}
- .carousel-actions button {
-  border-radius: 50px;
-  background-color: white;
-  border: 0;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-}
-
-.carousel-actions button#carousel-button-prev {
-  margin-left: 20px; /* prevent previous button from touching the side*/
-}
-
- .carousel-actions button#carousel-button-next {
-  margin-right: 20px;  /* prevent next button from touching the side*/
-}
-
-
-
-/* hanlde smooth transitions between slides */
-@keyframes fadeVisibility {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
