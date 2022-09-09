@@ -57,13 +57,7 @@ function renderImages(src, tag, imgTitle, imgComment) {
    lightbox.id = 'lightbox'
    document.body.appendChild(lightbox)
    
-   const carouselactions = document.createElement('div');
-   carouselactions.className= 'carousel-actions';
-   lightbox.appendChild(carouselactions);
-
-   const buttonprev = document.createElement('button');
-   buttonprev.id ='carousel-button-prev';
-   carouselactions.appendChild(buttonprev);
+   
 
    
    
@@ -95,35 +89,28 @@ function renderImages(src, tag, imgTitle, imgComment) {
      })
    };
    
-   nextButton.addEventListener("click", plusSlides(1));
-   prevButton.addEventListener("click", plusSlides(-1));
+   
 
 
+<<<<<<< HEAD
+=======
+const images = document.querySelectorAll('img')
+images.forEach(image => {
+  image.addEventListener('click', e => {
+    lightbox.classList.add('active')
+    const img = document.createElement('img')
+    img.src = image.src
+    while (lightbox.firstChild) {
+      lightbox.removeChild(lightbox.firstChild)
+    }
+    lightbox.appendChild(img)
+  })
+})
+
+lightbox.addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return
+  lightbox.classList.remove('active')
+})
+>>>>>>> f7393cdb774e88631b44c53f02a2cea5c9b09e7d
 
 
-
-const nextButton = document.getElementById("carousel-button-next");
-const prevButton = document.getElementById("carousel-button-prev");
-
-let slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("active");
-  
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  
-  slides[slideIndex-1].style.display = "block";
-  
-}
