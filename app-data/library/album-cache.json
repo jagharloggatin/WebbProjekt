@@ -1,0 +1,17 @@
+{
+  "err": null,
+  "fields": {
+    "title": "wrong",
+    "albumComment": "test"
+  },
+  "files": {
+    "image": {
+      "size": 2820009,
+      "filepath": "C:\\Users\\Jonathan\\AppData\\Local\\Temp\\e49ae5687b14a548734ee2600",
+      "newFilename": "e49ae5687b14a548734ee2600",
+      "mimetype": "image/png",
+      "mtime": "2022-09-08T10:58:27.839Z",
+      "originalFilename": "cat.png"
+    }
+  }
+}
