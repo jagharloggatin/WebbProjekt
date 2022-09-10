@@ -1,12 +1,6 @@
-
-//https://developer.mozilla.org/en-US/docs/Web/API/FormData
-
 const formAddServerDictory = document.getElementById('formAddServerDictory');
-const jsonContent = document.getElementById('jsonContent');
-
-//Start the server by opening a terminal in /case-study-server and type node simple-with-form.js
-const urlPost = 'http://localhost:3000/api/upload/album';
-const urlJson = 'app-data/library/albumCache.json';
+const urlPost = 'http://localhost:3000/api/upload';
+const urlJson = 'app-data/library/picture-library.json';
 
 formAddServerDictory.addEventListener('submit', async event => {
     event.preventDefault();
@@ -19,7 +13,6 @@ formAddServerDictory.addEventListener('submit', async event => {
             method: 'post',
             body: formData
         });
-
         const result = await response.text();
 
         if (response.ok) {
@@ -27,7 +20,7 @@ formAddServerDictory.addEventListener('submit', async event => {
             const response = await fetch(urlJson);
             const data = await response.text();
 
-            console.log(`Thank you for submitting the information. It has been recieved:\n`+
+            alert(`Thank you for submitting the information. It has been recieved:\n`+
                 `${data}`);
         }
         else {
@@ -38,4 +31,4 @@ formAddServerDictory.addEventListener('submit', async event => {
     catch {
         alert("Transmission error");
     }
-});
+})

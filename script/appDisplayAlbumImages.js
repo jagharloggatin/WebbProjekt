@@ -21,7 +21,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-
 function renderImages(src, tag, imgTitle, imgComment) {
 
     const container = document.createElement('div');
@@ -33,6 +32,7 @@ function renderImages(src, tag, imgTitle, imgComment) {
     container.appendChild(div);
 
     const a = document.createElement('a');
+    a.href="carousel.html"
 
     const img = document.createElement('img');
     img.src = src;
@@ -56,7 +56,6 @@ function renderImages(src, tag, imgTitle, imgComment) {
     const lightbox = document.createElement('div');
     lightbox.id = 'lightbox';
     window.document.body.appendChild(lightbox)
-
 
 
 

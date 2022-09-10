@@ -1,155 +1,109 @@
-//required node library
-const path = require('path');
-const fs = require('fs');
+// Läs för att förstå formidable
+// https://www.npmjs.com/package/formidable
+// https://www.section.io/engineering-education/uploading-files-using-formidable-nodejs/
+// https://www.tabnine.com/code/javascript/functions/formidable/Files/image
+// https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp
+
+const express = require('express');
+const formidable = require('formidable');
+const path = require("path");
+const fs = require("fs");
+const cors = require('cors');
+
 const libraryDir = "app-data/library";
 const applicationDir = path.resolve('./');
+const libraryJsonPath = 'app-data/library/picture-library.json';
 
-
-//from the downloaded npm
-const express = require('express');
-const cors = require('cors');
-const formidable = require('formidable');
-const multer = require("multer");
 
 const app = express();
-const port = 3000;
 
-const appDir = 'app-data';
-const appJson = 'directories.json';
+//To get past cors policy
+//https://www.npmjs.com/package/cors
+//https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+app.use(cors());
 
-// app.get('/album', (req, res) => {
-//     res.send(`
-//     <h2>Add Album</h2>
-//     <form action="/api/upload/Album" enctype="multipart/form-data" method="post">
-//       <div>Text field title: <input type="text" name="title" /></div>
-//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
-//       <input type="submit" value="Upload" />
-//     </form>
-//   `);
-// });
-
-// app.get('/picture', (req, res) => {
-//     res.send(`
-//     <h2>Add Picture</h2>
-//     <form action="/api/upload/Picture" enctype="multipart/form-data" method="post">
-//       <div>Text field title: <input type="text" name="title" /></div>
-//       <div>File: <input type="file" name="someExpressFiles" multiple="multiple" /></div>
-//       <input type="submit" value="Upload" />
-//     </form>
-//   `);
-// });
-
-const fileStorageEngine = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'app-data/library')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '--' + path.extname(file.originalname));
-    }
+app.listen(3000, () => {
+    console.log('Server listening on http://localhost:3000 ...');
 });
 
-const upload = multer({storage: fileStorageEngine});
+//Post request
+app.post('/api/upload', (req, res) => {
 
-app.use(cors({
-    origin: '*'
-}));
+    //Creates a formidable object of the incoming data
+    let form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
 
-let dir = 'app-data/library/pictures/hey';
+        // fs.mkdirSync(path.resolve(`app-data/library/pictures/${fields.title}`));
 
-app.post('/api/upload/album', (req, res, next) => {
-    const form = formidable();
+        let newName = files.myImage.originalFilename.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+        let oldPath = files.myImage.filepath;
+        let title = fields.title.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+        const dir = `app-data/library/pictures/${title}`;
 
+        let newPath = 'app-data/library/pictures/album-header/' +  newName;
 
+        console.log(newPath)
 
-    form.parse(req, (err, fields, files) => {
-        if (err) {
+        fs.mkdirSync(dir, { recursive: true }, (err) => {
+            if (err) {
+                throw err;
+            }
+        });
+
+        const data = fs.readFileSync(oldPath)
+
+        fs.writeFileSync(newPath, data, function(err){
+            res.status(501).send('Couldnt create album');
             return;
-        }
+        })
 
-        writeJSON('albumCache.json', {err, fields, files});
-        res.json({ fields, files });
-        dir += fields.title;
+        let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
 
-        console.log('POST body:', fields);
+        // libraryJson = JSON.parse(path.resolve(albumHeaderDir, libraryJsonPath));
+        // console.log(libraryJson.albums);
 
-        let dirStruct = [];
-        if (fileExists(appJson))
-            dirStruct  = readJSON(appJson);
+        let albumObj = {
+            id:  uniqueId(),
+            title: title,
+            comment: fields.albumComment.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase(),
+            path: dir,
+            headerImage: newPath,
+            pictures: [],
+        };
 
-        //get the data sent over from browser
-        const dirToCreate = fields['directory'];
+        libraryJson.albums.push(albumObj);
 
-
-
-        //create the directory
-        const pathToCreate = path.join(__dirname, appDir, dirToCreate);
-        if (pathToCreate != '' && !fs.existsSync(path.resolve(pathToCreate)))
-        {
-            //make sure appDir exists
-            const appDataPath = path.join(__dirname, appDir);
-            if (!fs.existsSync(path.resolve(appDataPath)))
-                fs.mkdirSync(path.resolve(appDataPath));
-
-            //create the directory
-            if (!fs.existsSync(path.resolve(pathToCreate)))
-                fs.mkdirSync(path.resolve(pathToCreate));
-
-            //update the json file
-            dirStruct.push(dirToCreate)
-            writeJSON(appJson, dirStruct);
-
-        }
-
-        //send success response
+        fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+            // Todo: remove album header picture and directory in case of an error
+            res.sendStatus(501);
+            return;
+        });
         res.sendStatus(200);
     });
 });
 
 
 
-app.post('/api/upload/Picture', (req, res, next) => {
-    const form = formidable({ multiples: true });
-    form.parse(req, (err, fields, files) => {
-        if (err) {
-            next(err);
-            return;
-        }
+//Writes image info to albumCache.json to later unpack and use
+// writeJSON('albumCache.json', {err, fields, files});
+// res.json({ fields, files });
 
-        writeJSON('pictureCache.json', {err, fields, files});
-        res.json({ fields, files });
-        dir += fields.title;
-    });
-
-});
+//Converts file info to JSON
 
 
+function uniqueId() {
+    const dateString = Date.now().toString(36);
+    const randomness = Math.random().toString(36).substring(2);
+    return dateString + randomness;
+};
 function writeJSON(fname, obj) {
     const dir = path.join(applicationDir, `/${libraryDir}`);
-    // let s = JSON.stringify(obj);
-
     fs.writeFileSync(path.resolve(dir, fname), JSON.stringify(obj));
 }
 
 function readJSON(fname) {
-    const appDataDir = `app_data/library`
-    obj = JSON.parse(fs.readFileSync(path.resolve(appDataDir, fname), 'utf8'));
+    const dir2 = path.join(applicationDir, `/${libraryDir}`);
+
+    const obj = JSON.parse(fs.readFileSync(path.resolve(dir2, fname), 'utf8'));
     return obj;
 }
-
-function fileExists(fname) {
-    const appDataDir = path.join(__dirname, appDir);
-    return fs.existsSync(path.resolve(appDataDir, fname));
-}
-
-
-
-
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-
-
-
-
-
