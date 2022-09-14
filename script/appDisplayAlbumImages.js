@@ -31,84 +31,148 @@ function renderImages(src, tag, imgTitle, imgComment) {
     div.dataset.albumId = tag;
     container.appendChild(div);
 
-    const a = document.createElement('a');
-    a.href="carousel.html"
-
     const img = document.createElement('img');
     img.src = src;
 
-    a.appendChild(img);
-    div.appendChild(a);
+   
+    /*const a = document.createElement('a');
+    a.className="slide";
+    a.href=src;*/
+    div.appendChild(img);
+
+    /*a.setAttribute('data-lightbox', 'models');
+    a.setAttribute('data-title', `${imgTitle}`);*/
+    /*a.setAttribute('data-title',`${imgComment}`)*/
+
+
+    
+    
+    /*div.appendChild(a);*/
+
+   
 
     const imgTitleDiv = document.createElement('div');
     imgTitleDiv.className = 'imgTitle';
     imgTitleDiv.textContent = `${imgTitle}`;
     div.appendChild(imgTitleDiv);
 
+    
     const imgCommentDiv = document.createElement('div');
     imgCommentDiv.className = 'imgComment';
     imgCommentDiv.textContent = `${imgComment}`;
     container.appendChild(imgCommentDiv);
+   
+    var checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.className = "check";
+    checkbox.id = src;
+    div.appendChild(checkbox);
+
+    div.appendChild(checkbox);
+    
 
     const imgFlex = document.querySelector('.image-wrap');
     imgFlex.appendChild(container);
 
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    window.document.body.appendChild(lightbox)
 
+      /*  const ratingDiv = document.createElement("div");
+        ratingDiv.className = "rating";
+        flexItemDiv.appendChild(ratingDiv);
+      
+        for (let i = 1; i <= 5; i++) {
+          const star = createStar(i);
+          ratingDiv.appendChild(star);
+        }
+      
+        const rating = getRating(picture.id);
+      
+        renderRatingColors(picture.id, rating);
+      }
+      
+      function createStar(index) {
+        const starTemplate = document.createElement("div");
+        starTemplate.className = "star fa fa-star";
+        starTemplate.dataset.rating = index;
+      
+        starTemplate.addEventListener("click", (event) => {
+          ratePicture(event.target);
+        });
+      
+        return starTemplate;
+      }
+      
+      function getRating(pictureId) {
+        const ratingVarName = "rating-" + pictureId;
+      
+        return window.localStorage.getItem(ratingVarName);
+      }
+      
+      function setRating(pictureId, rating) {
+        const ratingVarName = "rating-" + pictureId;
+      
+        return window.localStorage.setItem(ratingVarName, rating);
+      }
+      
+     /* function ratePicture(starElement) {
+        console.log(starElement.dataset.rating);
+        const pictureElement = starElement.closest(".pictureWrapper");
+      
+        const pictureId = pictureElement.dataset.id;
+      
+        // Värde mellan 1-5
+        let rating = starElement.dataset.rating;
+      
+        const currentRating = getRating(pictureId);
+      
+        if (currentRating && currentRating == rating) {
+          rating = 0;
+        }
+      
+        setRating(pictureId, rating);
+        renderRatingColors(pictureId, rating);
+      }
+      
+      function renderRatingColors(pictureId, rating) {
+        const pictureElement = document.querySelector(
+          `.pictureWrapper[data-id='${pictureId}']`
+        );
+      
+        const starElements = pictureElement.querySelectorAll(".rating .star");
+      
+        for (let i = 0; i < 5; i++) {
+          if (i < rating) {
+            starElements[i].classList.add("checked");
+          } else {
+            starElements[i].classList.remove("checked");
+          }
+        }*/
+        
 
+    }
 
-    //
-    // const lightbox = document.createElement('div')
-    // lightbox.id = 'lightbox'
-    // document.body.appendChild(lightbox)
-    //
-    //
-    // // const images = document.querySelectorAll('img')
-    // img.forEach(image => {
-    //     img.addEventListener('click', e => {
-    //         lightbox.classList.add('viewed')
-    //         const img = document.createElement('img')
-    //         img.src = image.src
-    //         while (lightbox.firstChild) {
-    //             lightbox.removeChild(lightbox.firstChild)
-    //         }
-    //         lightbox.appendChild(img)
-    //     })
-    // })
-    //
-    // lightbox.addEventListener('click', e => {
-    //     if (e.target !== e.currentTarget) return
-    //     lightbox.classList.remove('active')
-    // });
+    
+        
 
-}
+    let button = document.querySelector('.button');
+   
+   
+    
+    button.addEventListener('click', ()=>{
+        /* checkedItems = document.getElementsByClassName("check");*/
+      var  checkedItems = document.querySelectorAll('.check input[type ="checkbox"]:checked');
 
-//
-// const images = document.querySelectorAll('img')
-// images.forEach(image => {
-//   image.addEventListener('click', e => {
-//     lightbox.classList.add('active')
-//     const img = document.createElement('img')
-//     img.src = image.src
-//     while (lightbox.firstChild) {
-//       lightbox.removeChild(lightbox.firstChild)
-//     }
-//     lightbox.appendChild(img)
-//
-//
-//   })
-// })
-//
-// lightbox.addEventListener('click', e => {
-//     if (e.target !== e.currentTarget) return
-//     lightbox.classList.remove('active')
-//   })
-//
-//     img.addEventListener('click', () => {
-//         console.log(img.src);
-//         a.href=img.src;
-//     })
-//
+        let checkedItemsTrue = [];
 
+        for(const items of checkedItems){
+
+            if(items.checked == true){
+
+                checkedItemsTrue.push(check.id)
+                
+                
+                checkedItemsTrue.setAttribute('data-lightbox', 'models');
+                checkedItemsTrue.setAttribute('data-title', `${imgTitle}`);
+            }
+        }
+        
+    })
