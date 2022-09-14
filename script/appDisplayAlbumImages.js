@@ -76,10 +76,9 @@ function renderImages(src, tag, imgTitle, imgComment) {
     checkbox.id = src;
     div.appendChild(checkbox);
 
-    div.appendChild(checkbox);
     
 
-    const ratingwrap = document.createElement('div');
+    /*const ratingwrap = document.createElement('div');
     ratingwrap.className = "rating-wrap"
 
     const center = document.createElement('div');
@@ -111,140 +110,13 @@ function renderImages(src, tag, imgTitle, imgComment) {
     rating.appendChild(input45);
     rating.appendChild(input5);
 
-    container.appendChild(ratingwrap);
+    container.appendChild(ratingwrap);*/
 
     const imgFlex = document.querySelector('.image-wrap');
     imgFlex.appendChild(container);
 
 
-<<<<<<< HEAD
-      /*  const ratingDiv = document.createElement("div");
-        ratingDiv.className = "rating";
-        flexItemDiv.appendChild(ratingDiv);
       
-        for (let i = 1; i <= 5; i++) {
-          const star = createStar(i);
-          ratingDiv.appendChild(star);
-        }
-      
-        const rating = getRating(picture.id);
-      
-        renderRatingColors(picture.id, rating);
-      }
-      
-      function createStar(index) {
-        const starTemplate = document.createElement("div");
-        starTemplate.className = "star fa fa-star";
-        starTemplate.dataset.rating = index;
-      
-        starTemplate.addEventListener("click", (event) => {
-          ratePicture(event.target);
-        });
-      
-        return starTemplate;
-      }
-      
-      function getRating(pictureId) {
-        const ratingVarName = "rating-" + pictureId;
-      
-        return window.localStorage.getItem(ratingVarName);
-      }
-      
-      function setRating(pictureId, rating) {
-        const ratingVarName = "rating-" + pictureId;
-      
-        return window.localStorage.setItem(ratingVarName, rating);
-      }
-      
-     /* function ratePicture(starElement) {
-        console.log(starElement.dataset.rating);
-        const pictureElement = starElement.closest(".pictureWrapper");
-      
-        const pictureId = pictureElement.dataset.id;
-      
-        // Värde mellan 1-5
-        let rating = starElement.dataset.rating;
-      
-        const currentRating = getRating(pictureId);
-      
-        if (currentRating && currentRating == rating) {
-          rating = 0;
-        }
-      
-        setRating(pictureId, rating);
-        renderRatingColors(pictureId, rating);
-      }
-      
-      function renderRatingColors(pictureId, rating) {
-        const pictureElement = document.querySelector(
-          `.pictureWrapper[data-id='${pictureId}']`
-        );
-      
-        const starElements = pictureElement.querySelectorAll(".rating .star");
-      
-        for (let i = 0; i < 5; i++) {
-          if (i < rating) {
-            starElements[i].classList.add("checked");
-          } else {
-            starElements[i].classList.remove("checked");
-          }
-        }*/
-        
-=======
-    // --------------------------------Testar rating----------------------------------
-
-    // const starRating = document.createElement("div")
-    // starRating.className = "rating";
-    // container.appendChild(starRating);
-    //
-    // let star = document.querySelectorAll('input');
-    // let showValue = document.querySelector('#rating-value');
-    //
-    // for(let i = 0; i < star.length; i++) {
-    // star[i].addEventListener('click', function(){
-    // i = this.value;
-    // showValue.innerHTML = i + " out of 5";
-    // });
-    // }
-    
-    // function getRatings()
-
-
->>>>>>> 7f60d0e4be251a1478df6e65b0963dd00ada7f34
-
-    }
-
-<<<<<<< HEAD
-    
-        
-=======
-    //
-// =======
-// >>>>>>> bfccfc9b41bd2821edc642ca0d1ad761b7fccd90
-    // const lightbox = document.createElement('div')
-    // lightbox.id = 'lightbox'
-    // document.body.appendChild(lightbox)
-    //
-    //
-    // // const images = document.querySelectorAll('img')
-    // img.forEach(image => {
-    //     img.addEventListener('click', e => {
-    //         lightbox.classList.add('viewed')
-    //         const img = document.createElement('img')
-    //         img.src = image.src
-    //         while (lightbox.firstChild) {
-    //             lightbox.removeChild(lightbox.firstChild)
-    //         }
-    //         lightbox.appendChild(img)
-    //     })
-    // })
-    //
-    // lightbox.addEventListener('click', e => {
-    //     if (e.target !== e.currentTarget) return
-    //     lightbox.classList.remove('active')
-    // });
->>>>>>> 7f60d0e4be251a1478df6e65b0963dd00ada7f34
-
     let button = document.querySelector('.button');
    
    
@@ -268,3 +140,5 @@ function renderImages(src, tag, imgTitle, imgComment) {
         }
         
     })
+
+  }
