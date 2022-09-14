@@ -1,12 +1,12 @@
-const formAddServerDictory = document.getElementById('formAddServerDictory');
+const formAddAlbum = document.getElementById('formAddAlbum');
 const urlPost = 'http://localhost:3000/api/upload';
 const urlJson = 'app-data/library/picture-library.json';
 
-formAddServerDictory.addEventListener('submit', async event => {
+formAddAlbum.addEventListener('submit', async event => {
     event.preventDefault();
 
     //Create the key/value pairs used in the form
-    const formData = new FormData(formAddServerDictory);
+    const formData = new FormData(formAddAlbum);
     try {
         //send the data using post and await the reply
         const response = await fetch(urlPost, {

@@ -43,6 +43,8 @@
                       <a href="editPicture.html">Edit Picture</a>
                       <a href="addAlbum.html">Add Album</a>
                       <a href="addPicture.html">Add Picture</a>
+                      <a href="removePicture.html">Remove Picture</a>
+
                     </li>
                   </ul>
                 </div>
@@ -54,7 +56,7 @@
 
       <h2>A L B U M    C R E A T E</h2>
 
-      <form id='formAddServerDictory' action="/api/upload" enctype="multipart/form-data" method="post">
+      <form id="formAddAlbum" action="/api/upload" enctype="multipart/form-data" method="post">
         <div>Text field title: <input type="text" name="title" /></div>
         <div>Text field comment: <input type="text" name="albumComment" /></div>
         <div>File: <input type="file" name="myImage" multiple="multiple" /></div>
@@ -63,7 +65,7 @@
 
       <script src="./script/navbar.js" type="text/javascript"></script>
 
-      <script src="submit.js"></script>
+      <script src="subitAlbumAdd.js"></script>
 
 
     </body>

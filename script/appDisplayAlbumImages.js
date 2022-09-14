@@ -55,9 +55,6 @@ function renderImages(src, tag, imgTitle, imgComment) {
     lightbox.id = 'lightbox';
     window.document.body.appendChild(lightbox)
 
-
-
-    //
     // const lightbox = document.createElement('div')
     // lightbox.id = 'lightbox'
     // document.body.appendChild(lightbox)
