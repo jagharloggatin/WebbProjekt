@@ -1,3 +1,7 @@
+body{
+    background-image: radial-gradient(rgba(255, 0, 0, 0.203), rgba(69, 69, 97, 0.296), black);
+}
+
 .textDiv {
     text-align: start;
     margin-top: 5%;

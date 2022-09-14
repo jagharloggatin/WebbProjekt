@@ -16,6 +16,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         }
     }
+    // for (const album of library.albums) {
+    //     if (album.id === savedAlbumId) {
+    //         for (const picture of album.pictures) {
+    //             renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment);
+    //         }
+    //     }
+    // }
 });
 
 
@@ -54,6 +61,25 @@ function renderImages(src, tag, imgTitle, imgComment) {
     const lightbox = document.createElement('div');
     lightbox.id = 'lightbox';
     window.document.body.appendChild(lightbox)
+
+    // --------------------------------Testar rating----------------------------------
+
+    const starRating = document.createElement("div")
+    starRating.className = "rating";
+    container.appendChild(starRating);
+
+    let star = document.querySelectorAll('input');
+    let showValue = document.querySelector('#rating-value');
+
+    for(let i = 0; i < star.length; i++) {
+    star[i].addEventListener('click', function(){
+    i = this.value;
+    showValue.innerHTML = i + " out of 5";
+    });
+    }
+    
+    // function getRatings()
+
 
 
 
