@@ -93,6 +93,11 @@ app.post('/api/upload/picture', (req, res) => {
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
+        if (!fileIsValidImage(files.pictureToUpload)) {
+            alert("wrong file format, try again!");
+            return;
+        }
+
         let pictureFileName;
         let pictureComment = stringHandler(fields.pictureComment);
 
@@ -109,7 +114,7 @@ app.post('/api/upload/picture', (req, res) => {
         }
         let uploadPath = `app-data/library/pictures/${fields.selectAlbum}/` + pictureFileName;
 
-            libraryJson.albums.forEach(function (alb) {
+        libraryJson.albums.forEach(function (alb) {
             if (alb.title === fields.selectAlbum) {
                 if ((imageSize.size / (1024 * 1024)) > 2) {
                     pictureObj = {
@@ -179,40 +184,18 @@ app.post('/api/edit/picture', (req, res) => {
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
-        let picAlbum;
-        let picPath;
-
         let newTitle = stringHandler(fields.newPictureTitle);
         let newComment = stringHandler(fields.newPictureComment);
-
-        console.log("HEY")
-        console.log("HEY")
 
         libraryJson.albums.forEach(function (alb) {
             alb.pictures.forEach(function (picture) {
                 if (picture.title === fields.selectedPicture) {
+
                     picture.title = newTitle;
                     picture.comment = newComment;
-
-                    // if(picture.imgLoRes === "none") {
-                    //     picPath = picture.imgHighRes;
-                    // } else {
-                    //     picPath = picture.imgLoRes;
-                    // }
                 }
             });
-            picAlbum = alb.title;
         });
-        console.log("HEY")
-
-        // const oldPath = path.resolve(`app-data/library/pictures/${picAlbum}/` + picPath);
-        // let newPath = path.resolve(`app-data/library/pictures/${picAlbum}/` + fields.newPictureTitle.toLowerCase());
-
-        console.log("HEY")
-
-        // fs.renameSync(oldPath, newPath);
-
-        console.log("HEY")
 
         fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function (err) {
             res.sendStatus(501);
@@ -222,7 +205,38 @@ app.post('/api/edit/picture', (req, res) => {
     });
 });
 
-function stringHandler(fname){
+//REMOVE PICTURE
+app.post('/api/remove/picture', (req, res) => {
+    let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+
+    let form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+
+        libraryJson.albums.forEach(function (alb) {
+            alb.pictures.forEach(function (picture) {
+                if(fields.selectedPictureRemove === picture.title) {
+
+                    let index = alb.pictures.indexOf(picture)
+                    let element = alb.pictures.splice(index, 1)
+                    console.log(element)
+                }
+            });
+        });
+
+        fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function (err) {
+            res.sendStatus(501);
+            return;
+        });
+        res.sendStatus(200);
+    });
+});
+
+app.post('/api/rating', (req, res) => {
+
+
+});
+
+function stringHandler(fname) {
     return fname.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
 }
 

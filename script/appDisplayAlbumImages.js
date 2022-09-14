@@ -62,6 +62,7 @@ function renderImages(src, tag, imgTitle, imgComment) {
     lightbox.id = 'lightbox';
     window.document.body.appendChild(lightbox)
 
+<<<<<<< HEAD
     // --------------------------------Testar rating----------------------------------
 
     const starRating = document.createElement("div")
@@ -84,6 +85,8 @@ function renderImages(src, tag, imgTitle, imgComment) {
 
 
     //
+=======
+>>>>>>> bfccfc9b41bd2821edc642ca0d1ad761b7fccd90
     // const lightbox = document.createElement('div')
     // lightbox.id = 'lightbox'
     // document.body.appendChild(lightbox)
