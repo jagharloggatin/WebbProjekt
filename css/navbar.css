@@ -18,15 +18,10 @@ body {
     height: 64px;
 }
 
-.logo img {
-    justify-content: start;
-}
+
 
 .container {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-content: start;
 }
 
 .container ul {
@@ -62,7 +57,7 @@ body {
     color: #444040;
     margin: 20px;
     display: block;
-    font-family: "Arial";
+    font-family: "Arial", sans-serif;
     text-transform: uppercase;
 }
 
@@ -94,15 +89,30 @@ body {
 
 /*DROPDOWN MENU*/
 
+
 .dropdown {
     position: relative;
 }
 
-#dropdown-menu ul {
+#dropdown-album ul {
     padding: 0;
 }
 
-#dropdown-menu {
+#dropdown-edit{
+    position: absolute;
+    left: 0;
+    color: #444040;
+    width: 250%;
+    background-color: #be6060;
+    top: calc(100% + 1.25rem);
+    padding: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0,.2);
+    text-transform: uppercase;
+    z-index: 2;
+    display: none;
+}
+
+#dropdown-album {
     position: absolute;
     left: 0;
     color: #444040;
@@ -116,18 +126,27 @@ body {
     display: none;
 }
 
-#dropdown-menu a:hover{
+#dropdown-album a:hover{
     color: white;
 }
 
-.uLinks .navList:hover #dropdown-menu{
+#dropdown-edit a:hover {
+    color: white;
+}
+
+.uLinks .navList:hover #dropdown-edit{
+    display: flex;
+}
+
+.uLinks .navList:hover #dropdown-album{
     display: flex;
 }
 
 @media screen and (max-width: 880px) {
 
-    #dropdown-menu {
+    #dropdown-album, #dropdown-edit {
         text-align: center;
+        position: relative;
         justify-content: center;
         width: 100%;
     }
@@ -188,8 +207,9 @@ body {
 
 @media screen and (max-width: 680px) {
 
-    #dropdown-menu {
+    #dropdown-album, #dropdown-edit {
         text-align: center;
+        position: relative;
         justify-content: center;
         width: 100%;
     }

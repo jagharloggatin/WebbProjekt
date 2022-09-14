@@ -218,22 +218,6 @@
           "imgHiRes": "PIA22574~orig.jpg"
         }
       ]
-    },
-    {
-      "id": "l7u2xilfyi6c3nc4yvb",
-      "title": "testalbum",
-      "comment": "commentcommment-jfjjfjfjfjf",
-      "path": "app-data/library/pictures/testalbum",
-      "headerImage": "app-data/library/pictures/album-header/effigy.jpg",
-      "pictures": []
-    },
-    {
-      "id": "l7u3d4j1xre5h8naqq",
-      "title": "hejsvej",
-      "comment": "hej-jag-gillar-att-äta-glass-och-shit-jag-msåte-dra-snart-och-klippa-mig",
-      "path": "app-data/library/pictures/hejsvej",
-      "headerImage": "app-data/library/pictures/album-header/cletus.jpg",
-      "pictures": []
     }
   ]
 }

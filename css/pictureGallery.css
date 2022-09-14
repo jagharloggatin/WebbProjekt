@@ -4,12 +4,12 @@
 }
 
 .textDiv h3 {
-    font-family: "Aboreto";
+    font-family: "Aboreto", sans-serif;
     font-size: 30px;
 }
 
 .textDiv p {
-    font-family: "Aboreto";
+    font-family: "Aboreto", sans-serif;
 }
 
 
@@ -40,7 +40,7 @@
 
 .image-item {
     display: grid;
-    box-align: center;
+    /*box-align: center;*/
     align-items: center;
     /*box-pack: center;*/
     max-width: 20vw;
