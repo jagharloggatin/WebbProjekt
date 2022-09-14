@@ -1,5 +1,5 @@
 body{
-    background-image: radial-gradient(rgba(255, 0, 0, 0.203), rgba(69, 69, 97, 0.296), black);
+    /*background-image: radial-gradient(rgba(255, 0, 0, 0.203), rgba(69, 69, 97, 0.296), black);*/
 }
 
 .textDiv {
@@ -33,6 +33,7 @@ body{
 .image-wrap {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     overflow: hidden;
 }
 
@@ -51,6 +52,7 @@ body{
     justify-content: center;
     overflow: hidden;
 }
+
 
 .image-item img {
     min-height: 60vh;
@@ -81,14 +83,14 @@ body{
     transition: .5s ease-in-out;
 }
 
-/*.imgComment {*/
-/*    color: black;*/
-/*    font-size: 20px;*/
-/*    grid-row: 2;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    transition: .5s ease-in-out;*/
-/*}*/
+.imgComment {
+    color: black;
+    font-size: 20px;
+    grid-row: 2;
+    justify-content: center;
+    align-items: center;
+    transition: .5s ease-in-out;
+}
 
 
 #lightbox {
