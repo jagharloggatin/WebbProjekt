@@ -19,39 +19,39 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 function renderAlbums(albumTitle, headerImage, id, albumComment) {
 
-    const div = document.createElement('div');
-    div.className = `albumItem`;
-    div.dataset.albumId = id;
+    const divContainer = document.createElement('div');
+    divContainer.className="albumAndCommentContainer";
 
-    // const p = document.createElement('p');
-    // p.textContent = `${title}`;
-    // div.appendChild(p);
+    const div = document.createElement('div');
+    div.className = `album-item`;
+    div.dataset.albumId = id;
+    divContainer.appendChild(div);
+
+    const a = document.createElement('a');
+    a.className = "album-link";
+    a.href = `pictureGallery.html`;
+
+    const img = document.createElement('img');
+    img.src = `${headerImage}`;
+    a.appendChild(img);
+    div.appendChild(a);
+
     const albumTitleDiv = document.createElement('div');
     albumTitleDiv.className = 'albumTitle';
     albumTitleDiv.textContent = `${albumTitle}`;
     div.appendChild(albumTitleDiv);
 
     const albumCommentDiv = document.createElement('div');
-    albumCommentDiv.className = 'albumComment';
-    albumCommentDiv.textContent = `${albumComment}`;
-    div.appendChild(albumCommentDiv);
-    // const p2 = document.createElement('p');
-    // p2.textContent = `${comment}`;
-    // div.appendChild(p2);
-    const a = document.createElement('a');
-    div.appendChild(a);
-    a.className = "album-link";
-    a.href = `pictureGallery.html`;
+    albumCommentDiv.className = 'album-comment';
+    albumCommentDiv.textContent = albumComment;
+
+    divContainer.appendChild(albumCommentDiv);
+
+    const imgFlex = document.querySelector('.album-wrap');
+    imgFlex.appendChild(divContainer);
+
 
     a.addEventListener("click", () => {
         localStorage.setItem('selectedId', JSON.stringify(id))
     });
-
-    const img = document.createElement('img');
-    img.src = `${headerImage}`;
-    a.appendChild(img);
-
-    const imgFlex = document.querySelector('.albumContainer');
-    imgFlex.appendChild(div);
 }
-

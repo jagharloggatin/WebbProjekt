@@ -10,6 +10,7 @@
         <link href="/css/navbar.css" rel="stylesheet">
         <link href="/css/bootNavbar.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/bootstrap.css">
+
     </head>
 
     <body>
@@ -31,11 +32,24 @@
                         <li class="navList" id="albumLinks">
                             <div class="dropdown">
                                 <a class="aLinks" href="albumGallery.html">Albums</a>
-                                <ul id="dropdown-menu">
+                                <ul id="dropdown-album">
                                     <li id="dropdown-list">
                                         <a href="albumGallery.html">All Categories</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="navList" id="editLinks">
+                            <div class="dropdown">
+                                <a class="aLinks" href="#">Edit</a>
+                                <ul id="dropdown-edit">
+                                    <li id="dropdown-links">
+                                        <a href="editAlbum.html">Edit Album</a>
+                                        <a href="editPicture.html">Edit Picture</a>
                                         <a href="addAlbum.html">Add Album</a>
                                         <a href="addPicture.html">Add Picture</a>
+                                        <a href="removePicture.html">Remove Picture</a>
+
                                     </li>
                                 </ul>
                             </div>
@@ -45,17 +59,12 @@
             </nav>
         </div>
 
-        <div class="jumbotronContainer">
-            <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-                </p>
+        <header>
+            <div class="welcome-text">
+                <h1>Skalman Gallery</h1>
+                <a href="albumGallery.html">View pictures</a>
             </div>
-        </div>
+        </header>
 
 
         <script src="./script/navbar.js"
