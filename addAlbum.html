@@ -3,71 +3,99 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <script src="./script/appNavbarLibrary.js" type="module"></script>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+        <script src="./script/appNavbarLibrary.js" type="module"></script>
 
-      <link href="/css/navbar.css" rel="stylesheet">
+        <link href="/css/navbar.css" rel="stylesheet">
     </head>
     <body>
 
-      <div class="header">
-        <nav class="container">
-          <ul class="logo">
-            <li><img alt="" src="/lib/images/skalman3red.png"></li>
-          </ul>
-          <a class="toggle-button" href="#">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </a>
-          <div class="navbar-links">
-            <ul class="uLinks">
-              <li class="navList"><a class="aLinks" href="index.html">Home</a></li>
-              <li class="navList"><a class="aLinks" href="about.html">About</a></li>
-              <li class="navList" id="albumLinks">
-                <div class="dropdown">
-                  <a class="aLinks" href="albumGallery.html">Albums</a>
-                  <ul id="dropdown-album">
-                    <li id="dropdown-list">
-                      <a href="albumGallery.html">All Categories</a>
+        <div class="header">
+            <nav class="container">
+                <ul class="logo">
+                    <li><img alt="" src="/lib/images/skalman3red.png"></li>
+                </ul>
+                <a class="toggle-button" href="#">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbar-links">
+                    <ul class="uLinks">
+                        <li class="navList"><a class="aLinks" href="index.html">Home</a>
+                        </li>
+                        <li class="navList"><a class="aLinks" href="about.html">About</a>
+                        </li>
+                        <li class="navList" id="albumLinks">
+                            <div class="dropdown">
+                                <a class="aLinks" href="albumGallery.html">Albums</a>
+                                <ul id="dropdown-album">
+                                    <li id="dropdown-list">
+                                        <a href="albumGallery.html">All
+                                            Categories</a>
 
-                    </li>
-                  </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="navList" id="editLinks">
+                            <div class="dropdown">
+                                <a class="aLinks" href="#">Edit</a>
+                                <ul id="dropdown-edit">
+                                    <li id="dropdown-links">
+                                        <a href="editAlbum.html">Edit Album</a>
+                                        <a href="editPicture.html">Edit
+                                            Picture</a>
+                                        <a href="addAlbum.html">Add Album</a>
+                                        <a href="addPicture.html">Add
+                                            Picture</a>
+                                        <a href="removePicture.html">Remove
+                                            Picture</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="navList" id="ratingLinks">
+                            <div class="dropdown">
+                                <a class="aLinks" href="#">Rated</a>
+                                <ul id="dropdown-rating">
+                                    <li id="dropdown-rating-links">
+                                        <a href="pictureGallery.html">1 Star
+                                            ★</a>
+                                        <a href="pictureGallery.html">2 Star
+                                            ★</a>
+                                        <a href="pictureGallery.html">3 Star
+                                            ★</a>
+                                        <a href="pictureGallery.html">4 Star
+                                            ★</a>
+                                        <a href="pictureGallery.html">5 Star
+                                            ★</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-              </li>
-              <li class="navList" id="editLinks">
-                <div class="dropdown">
-                  <a class="aLinks" href="#">Edit</a>
-                  <ul id="dropdown-edit">
-                    <li id="dropdown-links">
-                      <a href="editAlbum.html">Edit Album</a>
-                      <a href="editPicture.html">Edit Picture</a>
-                      <a href="addAlbum.html">Add Album</a>
-                      <a href="addPicture.html">Add Picture</a>
-                      <a href="removePicture.html">Remove Picture</a>
+            </nav>
+        </div>
 
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+        <h2>A L B U M C R E A T E</h2>
 
-      <h2>A L B U M    C R E A T E</h2>
+        <form action="/api/upload" enctype="multipart/form-data"
+              id="formAddAlbum" method="post">
+            <div>Text field title: <input name="title" type="text"/></div>
+            <div>Text field comment: <input name="albumComment" type="text"/>
+            </div>
+            <div>File: <input multiple="multiple" name="myImage" type="file"/>
+            </div>
+            <input id='submitButton' type="submit" value="Upload"/>
+        </form>
 
-      <form id="formAddAlbum" action="/api/upload" enctype="multipart/form-data" method="post">
-        <div>Text field title: <input type="text" name="title" /></div>
-        <div>Text field comment: <input type="text" name="albumComment" /></div>
-        <div>File: <input type="file" name="myImage" multiple="multiple" /></div>
-        <input id='submitButton' type="submit" value="Upload" />
-      </form>
+        <script src="./script/navbar.js" type="text/javascript"></script>
 
-      <script src="./script/navbar.js" type="text/javascript"></script>
-
-      <script src="subitAlbumAdd.js"></script>
+        <script src="subitAlbumAdd.js"></script>
 
 
     </body>

@@ -98,7 +98,7 @@ body {
     padding: 0;
 }
 
-#dropdown-edit{
+#dropdown-edit {
     position: absolute;
     left: 0;
     color: #444040;
@@ -112,7 +112,7 @@ body {
     display: none;
 }
 
-#dropdown-album {
+#dropdown-album, #dropdown-rating{
     position: absolute;
     left: 0;
     color: #444040;
@@ -134,7 +134,15 @@ body {
     color: white;
 }
 
-.uLinks .navList:hover #dropdown-edit{
+#dropdown-rating a:hover {
+    color: white;
+}
+
+.uLinks .navList:hover #dropdown-edit {
+    display: flex;
+}
+
+.uLinks .navList:hover #dropdown-rating {
     display: flex;
 }
 
@@ -144,7 +152,7 @@ body {
 
 @media screen and (max-width: 880px) {
 
-    #dropdown-album, #dropdown-edit {
+    #dropdown-album, #dropdown-edit. #dropdown-rating {
         text-align: center;
         position: relative;
         justify-content: center;
@@ -207,7 +215,7 @@ body {
 
 @media screen and (max-width: 680px) {
 
-    #dropdown-album, #dropdown-edit {
+    #dropdown-album, #dropdown-edit, #dropdown-rating {
         text-align: center;
         position: relative;
         justify-content: center;
