@@ -258,6 +258,26 @@ app.post('/api/album/rating', jsonParser, (req, res) => {
 });
 
 
+app.get('/api/picture/rating', (req, res) => {
+    let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+    res.send(libraryJson)
+});
+
+
+//POST RATING TO JSON
+app.post('/api/picture/rating', jsonParser, (req, res) => {
+
+    let library = req.body;
+
+    fs.writeFileSync(libraryJsonPath, JSON.stringify(library));
+
+    res.json(library)
+
+    console.clear();
+    console.log(library.albums.pictures)
+
+});
+
 function writeJSON(fname, obj) {
     const dir = path.join(applicationDir, `/${libraryDir}`);
     let s = JSON.stringify(obj);

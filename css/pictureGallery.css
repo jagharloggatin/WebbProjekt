@@ -1,83 +1,145 @@
+.textDiv {
+    text-align: start;
+    margin-top: 5%;
+}
+
+.textDiv h3 {
+    font-family: "Aboreto", sans-serif;
+    font-size: 30px;
+}
+
+.textDiv p, a {
+    font-family: "Aboreto", sans-serif;
+}
+
+.switchBtn div{
+    display: flex;
+    letter-spacing: 2px;
+    justify-content: space-evenly;
+    width: 20%;
+    background-color: black;
+}
+
+.switchBtn div a{
+    text-decoration: none;
+    color: white;
+
+}
+
+.switchBtn div a:last-child{
+    margin-left: 5%;
+}
+
+.contentContainer {
+    padding: 0;
+    margin: 0;
+    width: 25%;
+}
+
+.contentFrame {
+    margin: 2% 10% 5% 10%;
+}
+
 .image-wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  place-items: center;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top:50%;
-  left: 50%;
+/*justify-content: center;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
 }
-
-/*.imgTitle {*/
-/*  color: white;*/
-/*  font-size: 12px;*/
-/*  cursor: pointer;*/
-/*  text-align: center;*/
-/*  position: absolute;*/
-/*  width: 100%;*/
-/*  top: 50%;*/
-/*  transition: .5s ease-in-out;*/
-
-/*}*/
-
-.image-item img {
-  /*width: 70%;*/
-  /*position: absolute;*/
-  /*margin: auto;*/
-  /*left: 0;*/
-  /*right: 0;*/
-  /*top: 0;*/
-  /*bottom: 0;*/
-  /*cursor: pointer;*/
-
-  min-height: 60vh;
-  max-width: 20vw;
-  object-fit:cover;
-  object-position: 50% 50%;
-  cursor: pointer;
-  position:relative;
-  transition: .5s ease-in-out;
-  z-index: -2;
-}
-
 .image-item {
-  min-height: 60vh;
-  max-width: 20vw;
-  padding: 4px;
-  object-fit: cover;
-  object-position: 50% 50%;
-  cursor: pointer;
-  position: relative;
-  transition: .5s ease-in-out;
-  z-index: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-/*CHECKBOX*/
-
-input[type="checkbox"] {
-  -webkit-appearance: none;
-  border: 1px solid black;
-  position: relative;
-  width: 100%;
-  cursor: pointer;
+.imgTitle {
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+    opacity: 0;
 }
 
-input[type="checkbox"]:after {
-  position: absolute;
-  font-family: "Font Awesome 5 Free", sans-serif;
-  font-weight: 400;
-  content: "\f111";
-  font-size: 18px;
-  color: #478bfb;
-  right: 10px;
-  top: -5px
+.imgComment {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .5s ease-in-out;
+    opacity: 1;
 }
-input[type="checkbox"]:checked:after {
-  font-weight: 900;
-  content: "\f058";
-  color: #478bfb;
 
+.flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.flex-item img {
+    max-height: 30vh;
+    max-width: 30vw;
+    min-height: 30vh;
+    min-width: 30vw;
+    padding: 4px;
+    transform:scale(1.5);
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+
+.flex-item input, .check {
+    z-index: 2;
+    margin-top: 2%;
+
+}
+
+.flex-item:hover .imgTitle {
+    opacity: 1;
+}
+
+.flex-item:hover img {
+    opacity: 0.6;
+}
+
+.flex-item:hover {
+    background-color: black;
+    transition: .5s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+    .imgComment {
+        font-size: 10px;
+    }
+
+    .contentContainer {
+        padding: 0;
+        margin: 0;
+        width: 33.333%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
+
+    .contentContainer {
+        padding: 0;
+        margin: 0;
+        width: 50%;
+    }
+
+    .imgTitle {
+        font-size: 8px;
+    }
+
+    .imgComment {
+        font-size: 7px;
+    }
 }
 

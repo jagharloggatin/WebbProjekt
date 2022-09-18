@@ -98,16 +98,6 @@ function renderButton() {
             // alert(`Failed to recieved data from server: ${err.message}`);
         }
     }
-
-
-    // const li = document.querySelectorAll('.rating li');
-    //
-    // for (let i = 0; i < li.length; i++) {
-    //     li[i].addEventListener('click', function () {
-    //         console.log(this.getAttribute('data-rate'));
-    //         li[i].textContent = "★"
-    //     });
-    // }
 }
 
 function renderAlbums(albumTitle, headerImage, id, albumComment, albumRating) {

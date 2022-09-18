@@ -4,7 +4,10 @@
         <meta charset="UTF-8">
         <title>Rated Albums</title>
         <script src="./script/appNavbarLibrary.js" type="module"></script>
+        <script src="script/appRatedPicturesLibrary.js" type="module"></script>
         <link href="/css/navbar.css" rel="stylesheet" type="text/css">
+        <link href="/css/ratedAlbums.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="./css/rating.css">
 
     </head>
     <body>
@@ -54,11 +57,11 @@
                                 <a class="aLinks" href="#">Rated</a>
                                 <ul id="dropdown-rating">
                                     <li id="dropdown-rating-links">
-                                        <a href="pictureGallery.html">1 Star ★</a>
-                                        <a href="pictureGallery.html">2 Star ★</a>
-                                        <a href="pictureGallery.html">3 Star ★</a>
-                                        <a href="pictureGallery.html">4 Star ★</a>
-                                        <a href="pictureGallery.html">5 Star ★</a>
+                                        <a href="ratedPictures.html" data-rated="1" id="r1" class="rank">1 Star ★</a>
+                                        <a href="ratedPictures.html" data-rated="2" id="r2" class="rank">2 Star ★</a>
+                                        <a href="ratedPictures.html" data-rated="3" id="r3" class="rank">3 Star ★</a>
+                                        <a href="ratedPictures.html" data-rated="4" id="r4" class="rank">4 Star ★</a>
+                                        <a href="ratedPictures.html" data-rated="5" id="r5" class="rank">5 Star ★</a>
                                     </li>
                                 </ul>
                             </div>
@@ -66,6 +69,12 @@
                     </ul>
                 </div>
             </nav>
+        </div>
+
+        <div class="image-wrap">
+            <div class="image-item">
+
+            </div>
         </div>
     </body>
     <script src="/script/navbar.js"
