@@ -12,15 +12,13 @@
         <link href="/css/navbar.css" rel="stylesheet" type="text/css">
         <link href="/css/pictureGallery.css" rel="stylesheet" type="text/css">
         <link href="/css/lightbox.css" rel="stylesheet" type="text/css">
+        <link href = "/css/CarouselView.css" rel="stylesheet" type = "text/cc">
 
         <link href="https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Collegiate+One&family=Dancing+Script:wght@500&display=swap"
               rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lato&family=Raleway:ital,wght@1,500&family=Rubik+Moonrocks&family=Source+Sans+Pro:wght@200;600&display=swap"
               rel="stylesheet">
-        <link
-              rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-            />
+        
     </head>
     <body>
 
@@ -83,12 +81,10 @@
                         <p>Jonathan Jennifer Alexandra Sahar</p>
                         <h3>Picture Gallery</h3>
                     </div>
-                    <div class="switch-button"><span class="active"></span>
-                        <button id="highRes">High Res</button>
-                        <button id="lowRes">Low Res</button>
+                    <div class="switchBtn">
+
                     </div>
                 </div>
-                <button class = "button"> Slideshow</button>
 
                 <div class="image-wrap">
                     
@@ -112,13 +108,23 @@
 <!--                    <h4 id="rating-value"></h4>-->
 <!--                    </div>    -->
 <!--                  </div>-->
-                <div class="image-wrap">
-                    
-                    <div class="image-item">
+
+                <div class = "checkcontainer"></div>
 
                     </div>
+                    <section aria-label="Newest Photos">
+                        <div class="carousel" data-carousel>
+                          <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+                          <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+                          <ul data-slides>
+                            <li class="slide" data-active>
 
-                </div>
+                            </li>
+                            
+                          </ul>
+                        </div>
+                      </section>
+            </div>
                 
             </div>
         </div>

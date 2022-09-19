@@ -1,272 +1,180 @@
-body{
-    /*background-image: radial-gradient(rgba(255, 0, 0, 0.203), rgba(69, 69, 97, 0.296), black);*/
-}
-
 .textDiv {
-    text-align: start;
-    margin-top: 5%;
-
-  }
-  
-  .textDiv h3 {
-    font-family: "Aboreto";
-    font-size: 30px;
-  }
-  
-  .textDiv p {
-    font-family: "Aboreto";
-  }
-  
-  
- /* .image-container {
+  text-align: start;
+  margin-top: 5%;
 
 }
 
 .textDiv h3 {
-    font-family: "Aboreto", sans-serif;
-    font-size: 30px;
+  font-family: "Aboreto";
+  font-size: 30px;
 }
 
 .textDiv p {
-    font-family: "Aboreto", sans-serif;
+  font-family: "Aboreto";
 }
 
 
-.image-container {
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 80vw;
-    margin: 0 auto;
-  }
-  
-  .image-item:hover {
-    background-color: black;
-    transition: .3s;
-<<<<<<< HEAD
-  }
-  
-  .image-wrap {
-    display:flex;
-    flex-direction:row;
-    overflow: visible;
-  }
-  
- /* @media (max-width :600px){
-    .image-wrap{
-      display:block;
-      
-      
-     
-    }
-  }*/
-  
-  
-  
-  /*.buttonDiv {
+.textDiv h3 {
+  font-family: "Aboreto", sans-serif;
+  font-size: 30px;
 }
 
-.image-wrap {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    overflow: hidden;
+.textDiv p {
+  font-family: "Aboreto", sans-serif;
 }
 
-.buttonDiv {
+.switchBtn div{
+  display: flex;
+  letter-spacing: 2px;
+  justify-content: space-evenly;
+  width: 20%;
+  background-color: black;
+}
 
-    display: inline-flex;
-    flex-direction: row;
-  }
-  
-  
-  .image-item {
+.switchBtn div a{
+  text-decoration: none;
+  color: white;
 
+}
 
-    display:grid;
-    box-align: center;
+.switchBtn div a:last-child{
+  margin-left: 5%;
+}
 
-*/
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
-/* body {
-  background-color: #eef5ff;
-}*/
-.image-container {
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+.checkcontainer{
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 90vw;
+  max-width: 90%;
+  width: 800px;
   margin: 0 auto;
-}
-.image-wrap {
- 
- flex-direction: rows;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 60%;
-  left: 50%;
-  display: flex;
-  place-items: center;
-  gap: 10px;
-  /*display:flex;
-  flex-direction:row;
-  overflow: visible;*/
 
 }
 
-.buttonDiv {
-  display: inline-flex;
-  flex-direction: row;
-}
-
-.button {
-  display: inline-flex;
-  flex-direction: row;
-}
-
-
-
-.Check-buttons{
-
-color: white;
-padding: 15px 32px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-
-}
-.image-item {
- 
-  /*height: 50px;
-  width: 50px;*/
-  /*max-width: 60vh;
-  /*background-color: #ffffff;*/
-  /*box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);*/
-  /*border-radius: 20px;*/
-  /*position: relative;
-  cursor: pointer;*/
-  
-  min-height: 60vh;
-  max-width: 20vw;
-  padding: 4px;
-  object-fit: cover;
-  object-position: 50% 50%;
-  cursor: pointer;
+.cards {
   position: relative;
-  transition: .5s ease-in-out;
-  z-index: 1;
- 
-  
+  height: 300px;
+  width: 240px;
+  margin: 10px;
+}
+
+.cards:active {
+  transform: scale(0.96);
 
 }
-input[type="checkbox"] {
-  -webkit-appearance: none;
+
+.cards input {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+
+}
+
+.cards input:checked~.card-content {
+
+  border-color: #4580E5;
+
+}
+
+.cards .card-content {
   position: relative;
-  width: 100%;
   cursor: pointer;
-}
-input[type="checkbox"]:after {
-  position: absolute;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 400;
-  content: "\f111";
-  font-size: 18px;
- color: #478bfb;
-
-  right: 10px;
-  top: -5px;
-}
-input[type="checkbox"]:checked:after {
-  font-weight: 900;
-  content: "\f058";
-  color: #478bfb;
-  
-}
-.image-item img {
- /* width: 70%;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  cursor: pointer;*/
-min-height: 60vh;
-  max-width: 20vw;
-  padding: 4px;
-  object-fit:cover;
-  object-position: 50% 50%;
-  cursor: pointer;
-  position:fixed;
-  transition: .5s ease-in-out;
-  z-index: -2;
-}
-
-
-.image-item img:hover {
-  
-
-  /*transform:scale(1.5);*/
-  background-color: black;
-  transition: .5s ease-in-out;
-  opacity: 0.6;
-}
-
-.imgTitle {
-  
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  transition: .5s ease-in-out;
-
-
-  
-  
-}
-.imgComment {
-  display : -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  color: black;
-  font-size: 11px;
-  
-  /*text-align: center;
-  position:absolute;
-  width: 100%;*/
- 
-  cursor: pointer;
-
   overflow: hidden;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 3px solid #ffff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0.02);
 
-  
-  
 }
 
+.cards img {
+
+  position: relative;
+  height: 100%;
+  width: 300px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: all ease 0.3s;
+}
+
+.cards:hover img {
+  width: 100%;
+  height: 240px;
+}
+
+.cards input:checked~.card-content img {
+
+  filter: grayscale(0.4);
+}
+
+.content .imgTitle {
+  margin: 0 0 8px 0;
+}
+
+.content .imgComment {
+  margin: 0;
+  line-height: 1;
 
 
 
+}
 
-@media screen and (min-width: 950px) {
-  .image-wrapper {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-  .image-item {
-    height: 300px;
-    width: 300px;
-  }
-  input[type="checkbox"]:after {
-    font-size: 22px;
-  }
+.content {
+  position: absolute;
+  bottom: -320px;
+  width: 100%;
+  padding: 120x;
+  background-color: #ffff;
+  transition: all ease 0.3s;
+
+
+}
+
+.cards:hover .content {
+  bottom: 0;
+}
+
+.cards input:checked~.card-content:before,
+.cards input:checked~.card-content:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+}
+
+.card-content:before {
+  height: 20px;
+  width: 20px;
+  top: 10px;
+  right: 10px;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  background-color: #4580E5;
+}
+
+.card-content:after {
+  height: 4px;
+  width: 8px;
+  top: 16px;
+  right: 16px;
+  border: 1px solid #FFFFFF;
+
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+
 }
