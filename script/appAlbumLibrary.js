@@ -13,92 +13,81 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     for (const album of library.albums) {
         renderAlbums(`${album.title}`, `${album.headerImage}`, `${album.id}`, `${album.comment} ${album.rating}`);
-
-        const ratingItem = document.querySelectorAll('.rating li');
-
-        for (let i = 0; i < ratingItem.length; i++) {
-            if(album.rating > 0) {
-                ratingItem.textContent="★"
-            }
-            else {
-                ratingItem.textContent="☆"
-            }
-        }
     }
-    renderButton();
+    // renderButton();
 });
 
-function renderButton() {
-
-    const urlGetPost = 'http://localhost:3000/api/album/rating';
-    const urlJson = 'app-data/library/picture-library.json';
-    const li = document.querySelectorAll('.rating .rating-item');
-
-    for (let i = 0; i < li.length; i++) {
-
-        li[i].addEventListener('click', async (event) => {
-
-            li[i].textContent = "★"
-
-            li[i].classList.add('selected');
-
-            let parentDiv = li[i].parentNode;
-
-            console.log(parentDiv.dataset.albumId);
-
-            let score = li[i].getAttribute('data-rate');
-
-            let galleryJSON = await myFetch(urlGetPost);
-
-            galleryJSON.albums.forEach(function (album) {
-                if (parentDiv.dataset.albumId === album.id) {
-                    let index = galleryJSON.albums.indexOf(album);
-                    galleryJSON.albums[index].rating = score;
-                }
-            });
-
-            console.log(galleryJSON.albums);
-            // console.log(galleryJSON.albums);
-
-            galleryJSON = await myFetch(urlGetPost, 'POST', galleryJSON);
-            console.log(galleryJSON)
-
-        });
-    }
-
-
-
-
-    async function myFetch(url, method = null, body = null) {
-        try {
-
-            let res = await fetch(url, {
-                method: method ?? 'GET',
-                headers: {'content-type': 'application/json'},
-                body: body ? JSON.stringify(body) : null
-            });
-
-            if (res.ok) {
-
-                console.log("Request successful");
-
-                //get the data from server
-                let data = await res.json();
-                return data;
-            } else {
-
-                //typcially you would log an error instead
-                console.log(`Failed to recieved data from server: ${res.status}`);
-                // alert(`Failed to recieved data from server: ${res.status}`);
-            }
-        } catch (err) {
-
-            //typcially you would log an error instead
-            console.log(`Failed to recieved data from server: ${err.message}`);
-            // alert(`Failed to recieved data from server: ${err.message}`);
-        }
-    }
-}
+// function renderButton() {
+//
+//     const urlGetPost = 'http://localhost:3000/api/album/rating';
+//     const urlJson = 'app-data/library/picture-library.json';
+//     const li = document.querySelectorAll('.rating .rating-item');
+//
+//     for (let i = 0; i < li.length; i++) {
+//
+//         li[i].addEventListener('click', async (event) => {
+//
+//             li[i].textContent = "★"
+//
+//             li[i].classList.add('selected');
+//
+//             let parentDiv = li[i].parentNode;
+//
+//             console.log(parentDiv.dataset.albumId);
+//
+//             let score = li[i].getAttribute('data-rate');
+//
+//             let galleryJSON = await myFetch(urlGetPost);
+//
+//             galleryJSON.albums.forEach(function (album) {
+//                 if (parentDiv.dataset.albumId === album.id) {
+//                     let index = galleryJSON.albums.indexOf(album);
+//                     galleryJSON.albums[index].rating = score;
+//                 }
+//             });
+//
+//             console.log(galleryJSON.albums);
+//             // console.log(galleryJSON.albums);
+//
+//             galleryJSON = await myFetch(urlGetPost, 'POST', galleryJSON);
+//             console.log(galleryJSON)
+//
+//         });
+//     }
+//
+//
+//
+//
+//     async function myFetch(url, method = null, body = null) {
+//         try {
+//
+//             let res = await fetch(url, {
+//                 method: method ?? 'GET',
+//                 headers: {'content-type': 'application/json'},
+//                 body: body ? JSON.stringify(body) : null
+//             });
+//
+//             if (res.ok) {
+//
+//                 console.log("Request successful");
+//
+//                 //get the data from server
+//                 let data = await res.json();
+//                 return data;
+//             } else {
+//
+//                 //typcially you would log an error instead
+//                 console.log(`Failed to recieved data from server: ${res.status}`);
+//                 // alert(`Failed to recieved data from server: ${res.status}`);
+//             }
+//         } catch (err) {
+//
+//             //typcially you would log an error instead
+//             console.log(`Failed to recieved data from server: ${err.message}`);
+//             // alert(`Failed to recieved data from server: ${err.message}`);
+//         }
+//     }
+// }
 
 function renderAlbums(albumTitle, headerImage, id, albumComment, albumRating) {
 
@@ -125,61 +114,60 @@ function renderAlbums(albumTitle, headerImage, id, albumComment, albumRating) {
     albumCommentDiv.className = 'album-comment';
     albumCommentDiv.textContent = albumComment;
 
-    const rating = document.createElement('div');
-    rating.name = "ratingDiv"
-    rating.dataset.albumId = id;
-    rating.className = "rating rating2";
-    // rating.setAttribute('rating.dataset.albumId', `${id}`);
+    // const rating = document.createElement('div');
+    // rating.name = "ratingDiv"
+    // rating.dataset.albumId = id;
+    // rating.className = "rating rating2";
+    // // rating.setAttribute('rating.dataset.albumId', `${id}`);
+    //
+    // const li5 = document.createElement('li');
+    // li5.className = "rating-item target"
+    // li5.name = "star"
+    // li5.textContent = "☆"
+    // li5.value = 5;
+    // li5.setAttribute('data-rate', '5')
+    //
+    //
+    // const li4 = document.createElement('li');
+    // li4.className = "rating-item target"
+    // li4.name = "star"
+    // li4.textContent = "☆"
+    // li5.value = 4;
+    // li4.setAttribute('data-rate', '4')
+    //
+    //
+    // const li3 = document.createElement('li');
+    // li3.className = "rating-item target"
+    // li3.name = "star"
+    // li3.textContent = "☆"
+    // li3.setAttribute('data-rate', '3')
+    //
+    //
+    // const li2 = document.createElement('li');
+    // li2.className = "rating-item target"
+    // li2.name = "star"
+    // li2.textContent = "☆"
+    // li2.setAttribute('data-rate', '2')
+    //
+    //
+    // const li1 = document.createElement('li');
+    // li1.className = "rating-item target"
+    // li1.textContent = "☆"
+    // li1.name = "star"
+    // li1.setAttribute('data-rate', '1')
+    //
+    // rating.appendChild(li1);
+    // rating.appendChild(li2);
+    // rating.appendChild(li3);
+    // rating.appendChild(li4);
+    // rating.appendChild(li5);
 
-    const li5 = document.createElement('li');
-    li5.className = "rating-item target"
-    li5.name = "star"
-    li5.textContent = "☆"
-    li5.value = 5;
-    li5.setAttribute('data-rate', '5')
 
-
-    const li4 = document.createElement('li');
-    li4.className = "rating-item target"
-    li4.name = "star"
-    li4.textContent = "☆"
-    li5.value = 4;
-    li4.setAttribute('data-rate', '4')
-
-
-    const li3 = document.createElement('li');
-    li3.className = "rating-item target"
-    li3.name = "star"
-    li3.textContent = "☆"
-    li3.setAttribute('data-rate', '3')
-
-
-    const li2 = document.createElement('li');
-    li2.className = "rating-item target"
-    li2.name = "star"
-    li2.textContent = "☆"
-    li2.setAttribute('data-rate', '2')
-
-
-    const li1 = document.createElement('li');
-    li1.className = "rating-item target"
-    li1.textContent = "☆"
-    li1.name = "star"
-    li1.setAttribute('data-rate', '1')
-
-    rating.appendChild(li1);
-    rating.appendChild(li2);
-    rating.appendChild(li3);
-    rating.appendChild(li4);
-    rating.appendChild(li5);
-
-
-    albumCommentDiv.appendChild(rating);
+    // albumCommentDiv.appendChild(rating);
     div.appendChild(albumCommentDiv);
 
     const imgFlex = document.querySelector('.album-wrap');
     imgFlex.appendChild(div);
-
 
     a.addEventListener("click", () => {
         localStorage.setItem('selectedId', JSON.stringify(id))

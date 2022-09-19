@@ -19,28 +19,72 @@ window.addEventListener('DOMContentLoaded', async () => {
     const savedAlbumId = JSON.parse(localStorage.getItem("selectedId")) || []
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
-    if (resolution === "lowRes" || resolution.length === 0){
+    if (resolution === "lowRes" || resolution.length === 0) {
         for (const album of library.albums) {
             if (album.id === savedAlbumId) {
                 for (const picture of album.pictures) {
-                    renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment);
+                    renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating);
                 }
             }
         }
     }
-
     if (resolution === "highRes") {
         for (const album of library.albums) {
             if (album.id === savedAlbumId) {
                 for (const picture of album.pictures) {
-                    renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment);
+                    renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating);
                 }
             }
         }
     }
     renderResolutionButtons();
     ratingButtonHandler()
+    // renderStars();
+    checkBox();
 });
+
+function checkBox() {
+    let checkBox = document.querySelectorAll('.slideCheck');
+
+    let slideArray = [];
+
+    checkBox.forEach(box => box.addEventListener('change', () => {
+        let abc = box.parentNode
+
+        slideArray.push(abc.dataset.pictureId);
+
+        for (let i = 0; i < slideArray.length; i++) {
+
+        }
+        console.log(abc.dataset.pictureId)
+
+    }));
+
+}
+
+function renderStars() {
+
+    let li = document.getElementsByClassName('rating-item')
+
+    // console.log(picRating.length);
+
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            for (let i = 0; i < 5; i++) {
+                if(typeof picture.rating === 'undefined'){
+                    li[i].textContent = "☆";
+                }
+                if(picture.rating === '1'){
+                    li[4].textContent = "★";
+                }
+                // console.log(li[i]);
+            }
+        }
+    }
+
+
+}
+
 
 function ratingButtonHandler() {
 
@@ -50,6 +94,8 @@ function ratingButtonHandler() {
     for (let i = 0; i < li.length; i++) {
 
         li[i].addEventListener('click', async (event) => {
+
+            let galleryJSON = await myFetch(urlGetPost);
 
             li[i].textContent = "★"
 
@@ -61,7 +107,6 @@ function ratingButtonHandler() {
 
             console.log("score: " + score);
 
-            let galleryJSON = await myFetch(urlGetPost);
 
             galleryJSON.albums.forEach(function (album) {
                 album.pictures.forEach(function (picture) {
@@ -80,35 +125,35 @@ function ratingButtonHandler() {
             console.log(galleryJSON)
         });
     }
+}
 
-    async function myFetch(url, method = null, body = null) {
-        try {
+async function myFetch(url, method = null, body = null) {
+    try {
 
-            let res = await fetch(url, {
-                method: method ?? 'GET',
-                headers: {'content-type': 'application/json'},
-                body: body ? JSON.stringify(body) : null
-            });
+        let res = await fetch(url, {
+            method: method ?? 'GET',
+            headers: {'content-type': 'application/json'},
+            body: body ? JSON.stringify(body) : null
+        });
 
-            if (res.ok) {
+        if (res.ok) {
 
-                console.log("Request successful");
+            console.log("Request successful");
 
-                //get the data from server
-                let data = await res.json();
-                return data;
-            } else {
-
-                //typcially you would log an error instead
-                console.log(`Failed to recieved data from server: ${res.status}`);
-                // alert(`Failed to recieved data from server: ${res.status}`);
-            }
-        } catch (err) {
+            //get the data from server
+            let data = await res.json();
+            return data;
+        } else {
 
             //typcially you would log an error instead
-            console.log(`Failed to recieved data from server: ${err.message}`);
-            // alert(`Failed to recieved data from server: ${err.message}`);
+            console.log(`Failed to recieved data from server: ${res.status}`);
+            // alert(`Failed to recieved data from server: ${res.status}`);
         }
+    } catch (err) {
+
+        //typcially you would log an error instead
+        console.log(`Failed to recieved data from server: ${err.message}`);
+        // alert(`Failed to recieved data from server: ${err.message}`);
     }
 }
 
@@ -144,29 +189,11 @@ function renderResolutionButtons() {
 }
 
 
-function renderImages(src, id, imgTitle, imgComment) {
-
-    const label = document.createElement('label');
-    label.dataset.picture = id;
-    label.className = 'cards';
-
-    const checkbox = document.createElement("input");
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.setAttribute("name", "checkbox");
-    checkbox.className = `check`;
-    checkbox.value = src;
-    checkbox.dataset.id = id;
-
-    label.appendChild(checkbox);
+function renderImages(src, id, imgTitle, imgComment, picRating) {
 
     const div = document.createElement('a');
     div.className = `flex-item`;
     div.dataset.albumId = id;
-    div.href = './pictureGallery.html?id=' + id;
-
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    div.appendChild(checkBox);
 
     const img = document.createElement('img');
     img.src = src;
@@ -178,18 +205,23 @@ function renderImages(src, id, imgTitle, imgComment) {
     div.appendChild(pTitle);
 
     const pComment = document.createElement('p');
-    pComment.textContent = imgComment.substring(0, 60)
+    pComment.textContent = imgComment.substring(0, 40)
     pComment.className = "imgComment";
     div.appendChild(pComment);
 
-
-    //
     // const slideShow = document.createElement('a');
     // slideShow.innerHTML = 'go to slideshow';
     // slideShow.href = '#';
 
     const content = document.createElement('div');
-    content.className = "contentContainer"
+    content.className = "contentContainer";
+    content.dataset.albumId = id;
+
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.className = "slideCheck"
+    content.dataset.pictureId = id;
+    content.appendChild(checkBox);
 
     const rating = document.createElement('div');
     rating.name = "ratingDiv"
@@ -198,33 +230,31 @@ function renderImages(src, id, imgTitle, imgComment) {
     // rating.setAttribute('rating.dataset.albumId', `${id}`);
 
     const li5 = document.createElement('li');
-    li5.className = "rating-item target"
+    li5.className = "rating-item"
     li5.name = "star"
     li5.textContent = "☆"
-    li5.value = 5;
     li5.setAttribute('data-rate', '5')
 
     const li4 = document.createElement('li');
-    li4.className = "rating-item target"
+    li4.className = "rating-item"
     li4.name = "star"
     li4.textContent = "☆"
-    li5.value = 4;
     li4.setAttribute('data-rate', '4')
 
     const li3 = document.createElement('li');
-    li3.className = "rating-item target"
+    li3.className = "rating-item"
     li3.name = "star"
     li3.textContent = "☆"
     li3.setAttribute('data-rate', '3')
 
     const li2 = document.createElement('li');
-    li2.className = "rating-item target"
+    li2.className = "rating-item"
     li2.name = "star"
     li2.textContent = "☆"
     li2.setAttribute('data-rate', '2')
 
     const li1 = document.createElement('li');
-    li1.className = "rating-item target"
+    li1.className = "rating-item"
     li1.textContent = "☆"
     li1.name = "star"
     li1.setAttribute('data-rate', '1')
@@ -238,112 +268,90 @@ function renderImages(src, id, imgTitle, imgComment) {
     const imgFlex = document.querySelector('.image-wrap');
     content.appendChild(div)
     content.appendChild(rating);
+
     imgFlex.appendChild(content);
 
-    // imgFlex.appendChild(content);
+    const popUpDiv = document.createElement('div');
+    popUpDiv.className = "popup-image";
 
-    checkbox.addEventListener('click', function () {
-        console.log("HELLO")
-    })
+    const popUpImg = document.createElement('img');
 
+    const popUpTitle = document.createElement('p');
+    popUpTitle.className = "popUpTitle";
 
-    // const allPictures = document.querySelectorAll('.flex-item');
-    // console.log(allPictures);
-    //
-    // slideShow.addEventListener("click", () => {
-    //     const allChecked = []
-    //     allPictures.forEach(item => {
-    //         if(item.querySelector('input').checked === true){
-    //             const purl = item.href
-    //             const purlString = new URL(purl);
-    //             const pid = purlString.searchParams.get('id');
-    //             allChecked.push(pid);
-    //         }
-    //     });
-    //     if(allChecked !== []){
-    //         let surl = '/slideShow.html?'
-    //         for(let i = 0; i < allChecked.length; i++){
-    //             if(i === 0){
-    //                 surl += `id=${allChecked[i]}`;
-    //             } else {
-    //                 surl += `&id=${allChecked[i]}`;
-    //             }
-    //         }
-    //         slideShow.href = surl;
-    //     }
-    // })
+    const picRatingScore = document.createElement('p');
+    picRatingScore.className = "picRatingScore";
 
+    const popUpComment = document.createElement('div');
+    popUpComment.className = "popUpComment";
 
-    // const cardcontent = document.createElement('div');
-    // cardcontent.className= `card-content`;
-    // label.appendChild(cardcontent);
-    //
-    // const img = document.createElement('img');
-    // img.src = src;
-    // img.className = "images"
-    // cardcontent.appendChild(img);
-    //
-    // const content = document.createElement('div');
-    // content.className = 'content';
-    // cardcontent.appendChild(content);
-    //
-    // const imgTitlediv = document.createElement('h4');
-    // imgTitlediv.className = 'imgTitle';
-    // imgTitlediv.textContent = `${imgTitle}`;
-    // content.appendChild(imgTitlediv);
-    //
-    // const imgCommentdiv = document.createElement('p');
-    // imgCommentdiv.className = 'imgComment';
-    // imgCommentdiv.textContent = `${imgComment}`;
-    // content.appendChild(imgCommentdiv);
-    //
-    // const imgFlex = document.querySelector('.checkcontainer');
-    // imgFlex.appendChild(label);
+    const contentDiv = document.createElement('div');
 
-    // const btn = document.createElement('button');
-    // btn.innerHTML = "ViewGallery";
-    // document.body.appendChild(btn);
-    // let session = sessionStorage;
+    let closePic = document.createElement('span');
+    closePic.className = "closePic"
 
-    // btn.addEventListener('click', ()=>{
+    // let next = document.createElement('span');
+    // next.className = "next"
     //
-    //     let checkedItems = document.getElementsByClassName('check');
-    //     let checkedItemsTrue = [];
-    //
-    //     for(const items of checkedItems){
-    //
-    //         if(items.checked == true){
-    //             checkedItemsTrue.push(items.value);
-    //         }
-    //     }
-    //     /* checkedItemsTrue('data-lightbox', 'models');
-    //    checkedItemsTrue('data-title', `${imgTitle}`);*/
-    //     /*console.log(checkedItemsTrue);*/
-    //     session.setItem('imageInfo',JSON.stringify(checkedItemsTrue));
-    //     console.log(session.getItem('imageInfo'));
-    //     const libr = JSON.parse(session.getItem("imageInfo"))
-    //     console.log(libr[0]);
-    //
-    //     const a = document.createElement('a');
-    //     /*a.href = session.getItem("");*/
-    //
-    //     window.document.body.appendChild(a);
-    //
-    //     for( let i = 0 ; i < libr.length ;i++){
-    //         a.href = libr[i];
-    //         a.appendChild(btn);
-    //         a.setAttribute('data-lightbox','gallery');
-    //
-    //     }
-    // })
-    /* checkb.addEventListener("change", (e) => {
+    // let prev = document.createElement('span');
+    // prev.className = "prev"
 
-       if (e.target.checked) {
-         console.log("Checkbox is checked..");
-       } else {
-         console.log("Checkbox is not checked..");
-       }
-     });*/
+    contentDiv.appendChild(popUpTitle);
+    contentDiv.appendChild(popUpComment);
+    contentDiv.appendChild(picRatingScore);
+    contentDiv.appendChild(closePic);
+    // contentDiv.appendChild(next);
+    // contentDiv.appendChild(prev);
 
-    /* const checkedItems = document.querySelector("input[name=checkbox]");*/
+    popUpDiv.appendChild(popUpImg);
+    let popUp = document.querySelector('.popup-div');
+    popUp.appendChild(contentDiv);
+
+    popUp.appendChild(popUpDiv);
+
+    for (let i = 0; i < div.children.length; i++) {
+
+        div.children[i].addEventListener('click', function () {
+            popUpComment.textContent = imgComment;
+            popUp.style.display = "flex";
+            popUpImg.style.display = "flex";
+            popUpImg.src = src;
+            popUpTitle.textContent = imgTitle;
+            picRatingScore.textContent = `rating is: ${picRating} stars`;
+            closePic.textContent = "X";
+            // next.textContent = ">"
+            // prev.textContent = "<"
+
+            closePic.addEventListener('click', function () {
+                popUp.style.display = "none";
+                popUpImg.style.display = "none";
+                popUpTitle.textContent = "";
+                picRatingScore.textContent = ``;
+                closePic.textContent = "";
+                popUpComment.textContent = "";
+                // next.textContent = ""
+                // prev.textContent = ""
+            })
+        });
+
+    }
 }
+
+// if (typeof picRating === 'undefined') {
+//     li1.textContent = "☆☆☆☆☆";
+// }
+// if (picRating === "1") {
+//     li1.textContent = "☆☆☆☆★"
+// }
+// if (picRating === "2") {
+//     li2.textContent = "☆☆☆★★"
+// }
+// if (picRating === "3") {
+//     li3.textContent = "☆☆★★★"
+// }
+// if (picRating === "4") {
+//     li4.textContent = "☆★★★★"
+// }
+// if (picRating === "5") {
+//     li5.textContent = "★★★★★"
+// }

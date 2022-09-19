@@ -16,14 +16,13 @@
     display: flex;
     letter-spacing: 2px;
     justify-content: space-evenly;
-    width: 20%;
+    width: 40%;
     background-color: black;
 }
 
 .switchBtn div a{
     text-decoration: none;
     color: white;
-
 }
 
 .switchBtn div a:last-child{
@@ -111,6 +110,138 @@
     background-color: black;
     transition: .5s ease-in-out;
 }
+
+.popup-div {
+    position: fixed;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,.8);
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    display: none;
+    cursor: pointer;
+}
+
+.popup-div img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*border: 5px solid white;*/
+    width: 500px;
+    object-fit: cover;
+    display: none;
+}
+
+.popup-div .closePic{
+    color: white;
+    z-index: 101;
+    top: 5%;
+    left: 95%;
+    position: absolute;
+    font-size: 200%;
+    float: right;
+}
+
+/*.popup-div .next{*/
+/*    color: white;*/
+/*    z-index: 101;*/
+/*    top: 50%;*/
+/*    left: 95%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    position: absolute;*/
+/*    font-size: 250%;*/
+/*}*/
+
+/*.popup-div .prev{*/
+/*    color: white;*/
+/*    z-index: 101;*/
+/*    top: 50%;*/
+/*    left: 5%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    position: absolute;*/
+/*    font-size: 250%;*/
+/*}*/
+
+.popup-div .popUpComment {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    color: white;
+}
+
+.popup-div .popUpTitle {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+    color: white;
+}
+
+.contentContainer input {
+    z-index: 3;
+    position: absolute;
+    transform: scale(2);
+}
+
+
+.popup-div .picRatingScore {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 102;
+    color: white;
+}
+
+@media screen and (max-width: 600px) {
+    .switchBtn div {
+        width: 100%;
+    }
+
+    .popup-div img {
+        width: 250px;
+    }
+
+    .popup-div span{
+        font-size: 100%;
+    }
+
+    .popup-div .popUpComment {
+        font-size: 50%;
+    }
+
+    .popup-div .popUpTitle {
+        font-size: 50%;
+    }
+
+
+    .popup-div .picRatingScore {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 102;
+        color: white;
+    }
+}
+@media screen and (max-width: 1400px) {
+    .imgComment {
+        font-size: 8px;
+    }
+
+    .contentContainer {
+        padding: 0;
+        margin: 0;
+        width: 33.333%;
+    }
+
+}
+
 
 @media screen and (max-width: 1200px) {
     .imgComment {
