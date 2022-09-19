@@ -13,6 +13,10 @@ const formidable = require('formidable');
 const path = require("path");
 const fs = require("fs");
 const cors = require('cors');
+const bodyParser = require('body-parser')
+let jsonParser = bodyParser.json()
+let urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 const libraryDir = "app-data";
 const applicationDir = path.resolve('./');
@@ -231,10 +235,55 @@ app.post('/api/remove/picture', (req, res) => {
     });
 });
 
-app.post('/api/rating', (req, res) => {
 
+//GET JSON API
+app.get('/api/album/rating', (req, res) => {
+    let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+    res.send(libraryJson)
+});
+
+
+//POST RATING TO JSON
+app.post('/api/album/rating', jsonParser, (req, res) => {
+
+    let library = req.body;
+
+    fs.writeFileSync(libraryJsonPath, JSON.stringify(library));
+
+    res.json(library)
+
+    console.clear();
+    console.log(library.albums)
 
 });
+
+
+app.get('/api/picture/rating', (req, res) => {
+    let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+    res.send(libraryJson)
+});
+
+
+//POST RATING TO JSON
+app.post('/api/picture/rating', jsonParser, (req, res) => {
+
+    let library = req.body;
+
+    fs.writeFileSync(libraryJsonPath, JSON.stringify(library));
+
+    res.json(library)
+
+    console.clear();
+    console.log(library.albums.pictures)
+
+});
+
+function writeJSON(fname, obj) {
+    const dir = path.join(applicationDir, `/${libraryDir}`);
+    let s = JSON.stringify(obj);
+
+    fs.writeFileSync(path.resolve(dir, fname), JSON.stringify(obj));
+}
 
 function stringHandler(fname) {
     return fname.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();

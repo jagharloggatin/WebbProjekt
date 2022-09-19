@@ -1,7 +1,12 @@
 .textDiv {
+<<<<<<< HEAD
   text-align: start;
   margin-top: 5%;
 
+=======
+    text-align: start;
+    margin-top: 5%;
+>>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
 }
 
 .textDiv h3 {
@@ -9,6 +14,7 @@
   font-size: 30px;
 }
 
+<<<<<<< HEAD
 .textDiv p {
   font-family: "Aboreto";
 }
@@ -130,9 +136,135 @@ body {
 .content .imgComment {
   margin: 0;
   line-height: 1;
+=======
+.textDiv p, a {
+    font-family: "Aboreto", sans-serif;
+}
+
+.switchBtn div{
+    display: flex;
+    letter-spacing: 2px;
+    justify-content: space-evenly;
+    width: 20%;
+    background-color: black;
+}
+
+.switchBtn div a{
+    text-decoration: none;
+    color: white;
+
+}
+
+.switchBtn div a:last-child{
+    margin-left: 5%;
+}
+
+.contentContainer {
+    padding: 0;
+    margin: 0;
+    width: 25%;
+}
+
+.contentFrame {
+    margin: 2% 10% 5% 10%;
+}
+
+.image-wrap {
+/*justify-content: center;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+}
+.image-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.imgTitle {
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+    opacity: 0;
+}
+
+.imgComment {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    transition: .5s ease-in-out;
+    opacity: 1;
+}
+
+.flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.flex-item img {
+    max-height: 30vh;
+    max-width: 30vw;
+    min-height: 30vh;
+    min-width: 30vw;
+    padding: 4px;
+    transform:scale(1.5);
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+
+.flex-item input, .check {
+    z-index: 2;
+    margin-top: 2%;
+
+}
+
+.flex-item:hover .imgTitle {
+    opacity: 1;
+}
+
+.flex-item:hover img {
+    opacity: 0.6;
+}
+
+.flex-item:hover {
+    background-color: black;
+    transition: .5s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+    .imgComment {
+        font-size: 10px;
+    }
+
+    .contentContainer {
+        padding: 0;
+        margin: 0;
+        width: 33.333%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+>>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
 
 
+    .contentContainer {
+        padding: 0;
+        margin: 0;
+        width: 50%;
+    }
 
+<<<<<<< HEAD
 }
 
 .content {
@@ -178,3 +310,14 @@ body {
   transform: rotate(-45deg);
 
 }
+=======
+    .imgTitle {
+        font-size: 8px;
+    }
+
+    .imgComment {
+        font-size: 7px;
+    }
+}
+
+>>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4

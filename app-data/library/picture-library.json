@@ -12,21 +12,24 @@
           "title": "History of Hubble Space Telescope (HST)",
           "comment": "The razor sharp eye of the Hubble Space Telescope (HST) easily resolves the Sombrero galaxy, Messier 104 (M104). 50,000 light-years across, the galaxy is located 28 million light-years from Earth at the southern edge of the rich Virgo cluster of galaxies. Equivalent to 800 billion suns, Sombrero is one of the most massive objects in that group.",
           "imgLoRes": "0700064~small.jpg",
-          "imgHiRes": "0700064~orig.jpg"
+          "imgHiRes": "0700064~orig.jpg",
+          "rating": "2"
         },
         {
           "id": "l7g5e386nalp6lzjeog",
           "title": "Hubble's Glittering Frisbee Galaxy",
           "comment": "This image from Hubble’s Wide Field Camera 3 (WFC3) shows a section of NGC 1448, a spiral galaxy located about 50 million light-years from Earth in the little-known constellation of Horologium (The Pendulum Clock).",
           "imgLoRes": "GSFC_20171208_Archive_e000117~small.jpg",
-          "imgHiRes": "GSFC_20171208_Archive_e000117~orig.jpg"
+          "imgHiRes": "GSFC_20171208_Archive_e000117~orig.jpg",
+          "rating": "2"
         },
         {
           "id": "l7g5e386y1ehlkjf9i",
           "title": "NASA's Hubble Celebrates 21st Anniversary with \"Rose\" of Galaxies",
           "comment": "To celebrate the 21st anniversary of the Hubble Space Telescope's deployment into space, astronomers at the Space Telescope Science Institute in Baltimore, Md., pointed Hubble's eye at an especially photogenic pair of interacting galaxies called Arp 273. ",
           "imgLoRes": "GSFC_20171208_Archive_e001885~small.jpg",
-          "imgHiRes": "GSFC_20171208_Archive_e001885~orig.jpg"
+          "imgHiRes": "GSFC_20171208_Archive_e001885~orig.jpg",
+          "rating": "1"
         },
         {
           "id": "l7g5e386e4fnmtwgas4",
@@ -49,7 +52,8 @@
           "imgLoRes": "PIA15226~small.jpg",
           "imgHiRes": "PIA15226~orig.jpg"
         }
-      ]
+      ],
+      "rating": "2"
     },
     {
       "id": "l7g5e386blaqw2si2tc",
@@ -63,21 +67,24 @@
           "title": "History of Hubble Space Telescope (HST)",
           "comment": "This is a color Hubble Space Telescope (HST) heritage image of supernova remnant N49, a neighboring galaxy, Ïthat was taken with Hubble's Wide Field Planetary Camera 2. ",
           "imgLoRes": "0301627~small.jpg",
-          "imgHiRes": "0301627~orig.jpg"
+          "imgHiRes": "0301627~orig.jpg",
+          "rating": "1"
         },
         {
           "id": "l7g5e386hvid9k8uw7",
           "title": "Hubble Peers into the Storm",
           "comment": "Backlit wisps along the Horsehead Nebula upper ridge are being illuminated by Sigma Orionis, a young five-star system just off the top of this image from the Hubble Space Telescope.",
           "imgLoRes": "GSFC_20171208_Archive_e000226~small.jpg",
-          "imgHiRes": "GSFC_20171208_Archive_e000226~orig.jpg"
+          "imgHiRes": "GSFC_20171208_Archive_e000226~orig.jpg",
+          "rating": "1"
         },
         {
           "id": "l7g5e3865wudlavwqzs",
           "title": "Hubble Sees a Star ‘Inflating’ a Giant Bubble",
           "comment": "For the 26th birthday of NASA’s Hubble Space Telescope, astronomers are highlighting a Hubble image of an enormous bubble being blown into space by a super-hot, massive star.",
           "imgLoRes": "GSFC_20171208_Archive_e000383~small.jpg",
-          "imgHiRes": "GSFC_20171208_Archive_e000383~orig.jpg"
+          "imgHiRes": "GSFC_20171208_Archive_e000383~orig.jpg",
+          "rating": "5"
         },
         {
           "id": "l7g5e386spqurx0vfnc",
@@ -91,16 +98,19 @@
           "title": "Hubble Captures Cosmic Ice Sculptures",
           "comment": "NASA image release September 16, 2010 Enjoying a frozen treat on a hot summer day can leave a sticky mess as it melts in the Sun and deforms. In the cold vacuum of space, there is no edible ice cream, but there is radiation from massive stars that is carving away at cold molecular clouds, creating bizarre, fantasy-like structures. ",
           "imgLoRes": "GSFC_20171208_Archive_e001963~small.jpg",
-          "imgHiRes": "GSFC_20171208_Archive_e001963~orig.jpg"
+          "imgHiRes": "GSFC_20171208_Archive_e001963~orig.jpg",
+          "rating": "1"
         },
         {
           "id": "l7g5e386xop64hpdzf",
           "title": "Hubble Captures View of Mystic Mountain",
           "comment": "NASA Hubble Space Telescope captures the chaotic activity atop a three-light-year-tall pillar of gas and dust that is being eaten away by the brilliant light from nearby bright stars in a tempestuous stellar nursery called the Carina Nebula.",
           "imgLoRes": "PIA15985~small.jpg",
-          "imgHiRes": "PIA15985~orig.jpg"
+          "imgHiRes": "PIA15985~orig.jpg",
+          "rating": "4"
         }
-      ]
+      ],
+      "rating": "1"
     },
     {
       "id": "l7g5e3860jr4tnwfp2c",
@@ -144,7 +154,8 @@
           "imgLoRes": "PIA16022~small.jpg",
           "imgHiRes": "PIA16022~orig.jpg"
         }
-      ]
+      ],
+      "rating": "3"
     },
     {
       "id": "l7g5e386fravg8d6vyh",
@@ -181,7 +192,8 @@
           "imgLoRes": "PIA05982~small.jpg",
           "imgHiRes": "PIA05982~orig.jpg"
         }
-      ]
+      ],
+      "rating": "4"
     },
     {
       "id": "l7g5e38617cxosifmfe",
@@ -217,7 +229,8 @@
           "imgLoRes": "PIA22574~small.jpg",
           "imgHiRes": "PIA22574~orig.jpg"
         }
-      ]
+      ],
+      "rating": "4"
     }
   ]
 }
