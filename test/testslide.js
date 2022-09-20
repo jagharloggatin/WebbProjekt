@@ -15,6 +15,7 @@ var i = 0;
 
 window.addEventListener('DOMContentLoaded', async () => {
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             pictureIds.forEach(item => {
@@ -41,7 +42,6 @@ function render(){
     next.addEventListener('click',() => {
         if(i >= images.length - 1)
             i = -1;
-
         imgBox.src = images[++i];
     });
     next.innerHTML = '&#10095';

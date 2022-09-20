@@ -4,13 +4,6 @@ import * as lib from '../model/picture-library-browser.js';
 const libraryJSON = "picture-library.json";
 let library;
 
-let highRes = false;
-let lowRes = true;
-
-// const url = window.location.href;
-// const urlString = new URL(url);
-// const albumId = urlString.searchParams.get('id');
-// console.log(albumId);
 
 window.addEventListener('DOMContentLoaded', async () => {
 
@@ -19,70 +12,57 @@ window.addEventListener('DOMContentLoaded', async () => {
     const savedAlbumId = JSON.parse(localStorage.getItem("selectedId")) || []
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
-    if (resolution === "lowRes" || resolution.length === 0) {
-        for (const album of library.albums) {
-            if (album.id === savedAlbumId) {
-                for (const picture of album.pictures) {
-                    renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating);
+    for (const album of library.albums) {
+        if (album.id === savedAlbumId) {
+            for (const picture of album.pictures) {
+                if (resolution === "lowRes" || resolution.length === 0) {
+                    if (typeof picture.imgLoRes !== 'undefined') {
+                        renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating);
+                    }
                 }
-            }
-        }
-    }
-    if (resolution === "highRes") {
-        for (const album of library.albums) {
-            if (album.id === savedAlbumId) {
-                for (const picture of album.pictures) {
-                    renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating);
+                if (resolution === "highRes") {
+                    // console.log(typeof picture.imgHiRes);
+                    if (typeof picture.imgHiRes !== 'undefined') {
+                        renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating);
+                    }
                 }
             }
         }
     }
     renderResolutionButtons();
     ratingButtonHandler()
-    // renderStars();
     checkBox();
 });
 
+// function onlyUnique(value, index, self) {
+//     return self.indexOf(value) === index;
+// }
+
 function checkBox() {
     let checkBox = document.querySelectorAll('.slideCheck');
+    let slideShowBtn = document.querySelector('.slideBtn');
 
     let slideArray = [];
 
-    checkBox.forEach(box => box.addEventListener('change', () => {
-        let abc = box.parentNode
+    checkBox.forEach(box => box.addEventListener('click', (event) => {
+        let parentDiv = box.parentNode
 
-        slideArray.push(abc.dataset.pictureId);
+        if (event.target.checked === true) {
+            console.log("checked")
+            slideArray.push(parentDiv.dataset.pictureId);
+            console.log(slideArray)
+            sessionStorage.setItem('imageInfo', JSON.stringify(slideArray));
 
-        for (let i = 0; i < slideArray.length; i++) {
-
+        } else {
+            console.log("unchecked")
+            let index = slideArray.indexOf(parentDiv.dataset.pictureId)
+            slideArray.splice(index, 1);
         }
-        console.log(abc.dataset.pictureId)
 
     }));
-
-}
-
-function renderStars() {
-
-    let li = document.getElementsByClassName('rating-item')
-
-    // console.log(picRating.length);
-
-    for (const album of library.albums) {
-        for (const picture of album.pictures) {
-            for (let i = 0; i < 5; i++) {
-                if(typeof picture.rating === 'undefined'){
-                    li[i].textContent = "☆";
-                }
-                if(picture.rating === '1'){
-                    li[4].textContent = "★";
-                }
-                // console.log(li[i]);
-            }
-        }
-    }
-
-
+    slideShowBtn.addEventListener('click', function () {
+        sessionStorage.setItem('imageInfo', JSON.stringify(slideArray));
+    });
 }
 
 
@@ -115,6 +95,7 @@ function ratingButtonHandler() {
                         let pictureIndex = galleryJSON.albums[albumIndex].pictures.indexOf(picture);
                         console.log("pic index: " + pictureIndex);
                         galleryJSON.albums[albumIndex].pictures[pictureIndex].rating = score;
+
                     }
                 });
             });
@@ -163,7 +144,8 @@ function renderResolutionButtons() {
 
     const slideShowBtn = document.createElement('a');
     slideShowBtn.textContent = "Slide Show"
-    slideShowBtn.href = "CarouselViewgallery.html"
+    slideShowBtn.className = "slideBtn";
+    slideShowBtn.href = "carouselViewGallery.html"
 
     const highResBtn = document.createElement('a');
     highResBtn.href = "pictureGallery.html"
@@ -186,95 +168,12 @@ function renderResolutionButtons() {
     lowResBtn.addEventListener("click", () => {
         localStorage.setItem('resolution', JSON.stringify("lowRes"))
     });
-
-    slideShowBtn.addEventListener('click', ()=>{
-   
-     
-        let checkedItems = document.getElementsByClassName('check');
-        
-        let checkedItemsTrue = [];
-   
-         for(const items of checkedItems){
-   
-             if(items.checked == true){
-   
-                 checkedItemsTrue.push(items.value);
-                 
-                 
-                 
-             }
-         }
-        
-         sessionStorage.setItem('imageInfo',JSON.stringify(checkedItemsTrue));
-         
-            })
-   
-
-
-
-
-
-
-
 }
 
 
 function renderImages(src, id, imgTitle, imgComment, picRating) {
-/*Kopierat från Sahars kod!---------------------------*!*/
-    
-const label = document.createElement('label');
-label.dataset.albumId = id;
-label.className = 'cards';
 
-
-const checkbox = document.createElement("INPUT");
-checkbox.setAttribute("type", "checkbox");
-checkbox.setAttribute("name", "checkbox");
-checkbox.className = `check`;
-checkbox.value = id;
-
-
-label.appendChild(checkbox);
-
-const cardcontent = document.createElement('div');
-cardcontent.className= `card-content`;;
-label.appendChild(cardcontent);
-
-const img = document.createElement('img');
-img.src = src;
-img.className = "images"
-cardcontent.appendChild(img);
-
-const content = document.createElement('div');
-content.className = 'content';
-cardcontent.appendChild(content);
-
-
-
-const imgTitlediv = document.createElement('h4');
-imgTitlediv.className = 'imgTitle';
-imgTitlediv.textContent = `${imgTitle}`;
-content.appendChild(imgTitlediv);
-
-
-const imgCommentdiv = document.createElement('p');
-imgCommentdiv.className = 'imgComment';
-imgCommentdiv.textContent = `${imgComment}`;
-content.appendChild(imgCommentdiv);
-
-const checkFlex = document.querySelector('.checkcontainer');
-checkFlex.appendChild(label);
- 
-    
-    
-    
-    
-    
-    
-   /*---------------------------------------------------*/
-    
-   
-   /*const div = document.createElement('a');
+    const div = document.createElement('a');
     div.className = `flex-item`;
     div.dataset.albumId = id;
 
@@ -299,48 +198,91 @@ checkFlex.appendChild(label);
     const content = document.createElement('div');
     content.className = "contentContainer";
     content.dataset.albumId = id;
+    content.dataset.pictureRating = picRating;
 
-    /*const checkBox = document.createElement('input');
+
+    const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.value = "check"
     checkBox.className = "slideCheck"
     content.dataset.pictureId = id;
-    content.appendChild(checkBox);*/
+    content.appendChild(checkBox);
 
-    /*const rating = document.createElement('div');
+    const rating = document.createElement('div');
     rating.name = "ratingDiv"
     rating.dataset.pictureId = id;
     rating.className = "rating rating2";
     // rating.setAttribute('rating.dataset.albumId', `${id}`);
 
+
     const li5 = document.createElement('li');
     li5.className = "rating-item"
     li5.name = "star"
-    li5.textContent = "☆"
+    // li5.textContent = "☆"
     li5.setAttribute('data-rate', '5')
 
     const li4 = document.createElement('li');
     li4.className = "rating-item"
     li4.name = "star"
-    li4.textContent = "☆"
+    // li4.textContent = "☆"
     li4.setAttribute('data-rate', '4')
 
     const li3 = document.createElement('li');
     li3.className = "rating-item"
     li3.name = "star"
-    li3.textContent = "☆"
+    // li3.textContent = "☆"
     li3.setAttribute('data-rate', '3')
 
     const li2 = document.createElement('li');
     li2.className = "rating-item"
     li2.name = "star"
-    li2.textContent = "☆"
+    // li2.textContent = "☆"
     li2.setAttribute('data-rate', '2')
 
     const li1 = document.createElement('li');
     li1.className = "rating-item"
-    li1.textContent = "☆"
+    // li1.textContent = "☆"
     li1.name = "star"
     li1.setAttribute('data-rate', '1')
+
+    if (typeof picRating === 'undefined') {
+        li1.textContent = "☆"
+        li2.textContent = "☆"
+        li3.textContent = "☆"
+        li4.textContent = "☆"
+        li5.textContent = "☆"
+    } if(picRating === '1'){
+        li1.textContent = "★"
+        li2.textContent = "☆"
+        li3.textContent = "☆"
+        li4.textContent = "☆"
+        li5.textContent = "☆"
+    } if(picRating === '2'){
+        li1.textContent = "★"
+        li2.textContent = "★"
+        li3.textContent = "☆"
+        li4.textContent = "☆"
+        li5.textContent = "☆"
+    } if(picRating === '3'){
+        li1.textContent = "★"
+        li2.textContent = "★"
+        li3.textContent = "★"
+        li4.textContent = "☆"
+        li5.textContent = "☆"
+    } if(picRating === '4'){
+        li1.textContent = "★"
+        li2.textContent = "★"
+        li3.textContent = "★"
+        li4.textContent = "★"
+        li5.textContent = "☆"
+    } if(picRating === '5'){
+        li1.textContent = "★"
+        li2.textContent = "★"
+        li3.textContent = "★"
+        li4.textContent = "★"
+        li5.textContent = "★"
+    }
+
 
     rating.appendChild(li5);
     rating.appendChild(li4);
@@ -349,6 +291,7 @@ checkFlex.appendChild(label);
     rating.appendChild(li1);
 
     const imgFlex = document.querySelector('.image-wrap');
+
     content.appendChild(div)
     content.appendChild(rating);
 
@@ -369,6 +312,7 @@ checkFlex.appendChild(label);
     popUpComment.className = "popUpComment";
 
     const contentDiv = document.createElement('div');
+
 
     let closePic = document.createElement('span');
     closePic.className = "closePic"
@@ -416,25 +360,129 @@ checkFlex.appendChild(label);
                 // prev.textContent = ""
             })
         });
-
-    }*/
+    }
 }
 
-// if (typeof picRating === 'undefined') {
-//     li1.textContent = "☆☆☆☆☆";
+
+// let li = document.querySelectorAll('.rating-item')
+// let pic = document.querySelectorAll('.flex-item')
+//
+// let parentIndex = [];
+// // let scoreArray = [];
+//
+//
+// let index;
+// pic.forEach(function (pics) {
+//
+//     let parentDiv = pics.parentNode;
+//
+//     console.log(parentDiv.dataset.pictureRating);
+//
+//     // if (typeof parentDiv.dataset.pictureRating === 'undefined') {
+//     //
+//     // }
+//     parentIndex.push(parentDiv.dataset.pictureRating);
+// })
+//
+// parentIndex.shift();
+// console.log(parentIndex);
+//
+// for (const album of library.albums) {
+//     if (album.id === savedAlbumId) {
+//         for (const picture of album.pictures) {
+//             console.log(picture.rating);
+//         }
+//     }
 // }
-// if (picRating === "1") {
-//     li1.textContent = "☆☆☆☆★"
+
+// liStar.textContent = "☆";
+//
+// for (let i = 0; i < parentIndex.length; i++) {
+//
 // }
-// if (picRating === "2") {
-//     li2.textContent = "☆☆☆★★"
+// for (const album of library.albums) {
+//     if (album.id === savedAlbumId) {
+//         for (const picture of album.pictures) {
+//             if(picture.rating === "1") {
+//                 liStar.textContent = "☆";
+//
+//             }
+//         }
+//     }
 // }
-// if (picRating === "3") {
-//     li3.textContent = "☆☆★★★"
+
+// parentIndex = parentIndex.filter(onlyUnique);
+
+
+// for (let i = 0; i < parentIndex.length; i++) {
+//     li.forEach(function(event){
+//
+//
+//     });
 // }
-// if (picRating === "4") {
-//     li4.textContent = "☆★★★★"
+
+//
+
+
+// console.log(event.target.getAttribute("data-rate"));
+// for (const album of library.albums) {
+//     if (album.id === savedAlbumId) {
+//         for (const picture of album.pictures) {
+//             if (parentDiv.dataset.pictureId === picture.id) {
+//                 if(picture.rating === "1"){
+//                     this.textContent = "★";
+//                 }
+//             }
+//         }
+//     }
 // }
-// if (picRating === "5") {
-//     li5.textContent = "★★★★★"
+
+
+// library.albums.forEach(function (album) {
+//     album.pictures.forEach(function (picture) {
+//         if (parentDiv.dataset.pictureId === picture.id) {
+//             let albumIndex = library.albums.indexOf(album);
+//             let pictureIndex = library.albums[albumIndex].pictures.indexOf(picture);
+//             console.log("pic index: " + pictureIndex);
+//             library.albums[albumIndex].pictures[pictureIndex].rating
+//
+//         }
+//     });
+// });
+
+// liStar.textContent = "☆";
+//
+
+
+//
+// for (const album of library.albums) {
+//     if (album.id === savedAlbumId) {
+//         for (const picture of album.pictures) {
+//
+//             console.log(typeof picture.rating);
+//             if (typeof picture.rating !== "undefined") {
+//                 // console.log(picture.rating, picture.id);
+//             }
+//
+//             if (typeof picture.rating === "undefined") {
+//                 // console.log(picture.rating, picture.id);
+//             }
+//
+//         }
+//     }
+// }
+
+
+// for (const album of library.albums) {
+//     for (const picture of album.pictures) {
+//         for (let i = 0; i < 10; i++) {
+//             if (typeof picture.rating === 'undefined') {
+//                 li[i].textContent = "☆";
+//             }
+//             // if (picture.rating === '1') {
+//             //     li[4].textContent = "★";
+//             // }
+//             // console.log(li[i]);
+//         }
+//     }
 // }
