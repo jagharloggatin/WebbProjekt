@@ -163,7 +163,7 @@ function renderResolutionButtons() {
 
     const slideShowBtn = document.createElement('a');
     slideShowBtn.textContent = "Slide Show"
-    slideShowBtn.href = "slideShow.html"
+    slideShowBtn.href = "CarouselViewgallery.html"
 
     const highResBtn = document.createElement('a');
     highResBtn.href = "pictureGallery.html"
@@ -186,12 +186,95 @@ function renderResolutionButtons() {
     lowResBtn.addEventListener("click", () => {
         localStorage.setItem('resolution', JSON.stringify("lowRes"))
     });
+
+    slideShowBtn.addEventListener('click', ()=>{
+   
+     
+        let checkedItems = document.getElementsByClassName('check');
+        
+        let checkedItemsTrue = [];
+   
+         for(const items of checkedItems){
+   
+             if(items.checked == true){
+   
+                 checkedItemsTrue.push(items.value);
+                 
+                 
+                 
+             }
+         }
+        
+         sessionStorage.setItem('imageInfo',JSON.stringify(checkedItemsTrue));
+         
+            })
+   
+
+
+
+
+
+
+
 }
 
 
 function renderImages(src, id, imgTitle, imgComment, picRating) {
+/*Kopierat från Sahars kod!---------------------------*!*/
+    
+const label = document.createElement('label');
+label.dataset.albumId = id;
+label.className = 'cards';
 
-    const div = document.createElement('a');
+
+const checkbox = document.createElement("INPUT");
+checkbox.setAttribute("type", "checkbox");
+checkbox.setAttribute("name", "checkbox");
+checkbox.className = `check`;
+checkbox.value = id;
+
+
+label.appendChild(checkbox);
+
+const cardcontent = document.createElement('div');
+cardcontent.className= `card-content`;;
+label.appendChild(cardcontent);
+
+const img = document.createElement('img');
+img.src = src;
+img.className = "images"
+cardcontent.appendChild(img);
+
+const content = document.createElement('div');
+content.className = 'content';
+cardcontent.appendChild(content);
+
+
+
+const imgTitlediv = document.createElement('h4');
+imgTitlediv.className = 'imgTitle';
+imgTitlediv.textContent = `${imgTitle}`;
+content.appendChild(imgTitlediv);
+
+
+const imgCommentdiv = document.createElement('p');
+imgCommentdiv.className = 'imgComment';
+imgCommentdiv.textContent = `${imgComment}`;
+content.appendChild(imgCommentdiv);
+
+const checkFlex = document.querySelector('.checkcontainer');
+checkFlex.appendChild(label);
+ 
+    
+    
+    
+    
+    
+    
+   /*---------------------------------------------------*/
+    
+   
+   /*const div = document.createElement('a');
     div.className = `flex-item`;
     div.dataset.albumId = id;
 
@@ -217,13 +300,13 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
     content.className = "contentContainer";
     content.dataset.albumId = id;
 
-    const checkBox = document.createElement('input');
+    /*const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.className = "slideCheck"
     content.dataset.pictureId = id;
-    content.appendChild(checkBox);
+    content.appendChild(checkBox);*/
 
-    const rating = document.createElement('div');
+    /*const rating = document.createElement('div');
     rating.name = "ratingDiv"
     rating.dataset.pictureId = id;
     rating.className = "rating rating2";
@@ -334,7 +417,7 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
             })
         });
 
-    }
+    }*/
 }
 
 // if (typeof picRating === 'undefined') {
