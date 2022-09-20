@@ -257,7 +257,6 @@ app.post('/api/album/rating', jsonParser, (req, res) => {
 
 });
 
-
 app.get('/api/picture/rating', (req, res) => {
     let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
     res.send(libraryJson)

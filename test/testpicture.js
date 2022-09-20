@@ -28,10 +28,8 @@ window.addEventListener('DOMContentLoaded', async () => {
         for (const album of library.albums) {
             if(album.id == albumId){
                 for (const picture of album.pictures) {
-
                     const comment = picture.comment.substring(0, 50) + '...';
                     renderImage(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, comment);
-
                 }
             }
         }
@@ -61,7 +59,6 @@ window.addEventListener('DOMContentLoaded', async () => {
                 slideShow.href = surl;
             }
         })
-
 
     } else [
         renderError()
