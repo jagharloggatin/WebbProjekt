@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
     for (const album of library.album.picture) {
-        if (pictures.id === mySlide) {
+        if (pictures.src === mySlide.forEach(img => {img.src})) {
             for (const picture of album.pictures) {
                 renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment);
             }

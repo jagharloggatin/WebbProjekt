@@ -1,6 +1,4 @@
 'use strict';
-
-/*import { brotliDecompressSync } from 'zlib';*/
 import * as lib from '../model/picture-library-browser.js';
 
 const libraryJSON = "picture-library.json";
@@ -30,71 +28,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             }
         }
     }
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-    renderResolutionButtons();
-    // for (const album of library.albums) {
-    //     if (album.id === savedAlbumId) {
-    //         for (const picture of album.pictures) {
-    //             renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment);
-    //         }
-    //     }
-    // }
-});
-
-function renderResolutionButtons() {
-  const btnContainer = document.createElement('div');
-
-  const Btn = document.createElement('a');
-  Btn.textContent = "Slide Show"
-  Btn.href = "CarouselViewgallery.html"
-
-  btnContainer.appendChild(Btn);
-
-  const buttonFlex = document.querySelector('.switchBtn');
-  buttonFlex.appendChild(btnContainer);
-
-
-  Btn.addEventListener('click', ()=>{
-   
-     
-    let checkedItems = document.getElementsByClassName('check');
-    
-    let checkedItemsTrue = [];
-  
-     for(const items of checkedItems){
-  
-         if(items.checked == true){
-  
-             checkedItemsTrue.push(items.value);
-             
-             
-             
-         }
-     }
-    
-     sessionStorage.setItem('imageInfo',JSON.stringify(checkedItemsTrue));
-     console.log(session.getItem('imageInfo'));
-     
-  
-    
-  })
-  
-
-  
-}
-
-
-
-
-
-
-
-
-=======
-=======
->>>>>>> 2bc7266a7408130b32d1f8253ad961958fce0836
     if (resolution === "highRes") {
         for (const album of library.albums) {
             if (album.id === savedAlbumId) {
@@ -154,19 +87,10 @@ function renderStars() {
 
 
 function ratingButtonHandler() {
->>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
 
     const urlGetPost = 'http://localhost:3000/api/picture/rating';
     const li = document.querySelectorAll('.rating .rating-item');
 
-<<<<<<< HEAD
-    const label = document.createElement('label');
-    label.dataset.albumId = tag;
-    label.className = 'cards';
-    
-   
- const checkbox = document.createElement("INPUT");
-=======
     for (let i = 0; i < li.length; i++) {
 
         li[i].addEventListener('click', async (event) => {
@@ -265,99 +189,14 @@ function renderResolutionButtons() {
 }
 
 
-<<<<<<< HEAD
-function renderImages(src, id, imgTitle, imgComment) {
-
-    const label = document.createElement('label');
-    label.dataset.picture = id;
-    label.className = 'cards';
-
-    const checkbox = document.createElement("input");
->>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
-    checkbox.setAttribute("type", "checkbox");
-    checkbox.setAttribute("name", "checkbox");
-    checkbox.className = `check`;
-    checkbox.value = src;
-<<<<<<< HEAD
-   
-    
-    label.appendChild(checkbox);
-=======
-    checkbox.dataset.id = id;
-
-    label.appendChild(checkbox);
-=======
 function renderImages(src, id, imgTitle, imgComment, picRating) {
->>>>>>> 2bc7266a7408130b32d1f8253ad961958fce0836
 
     const div = document.createElement('a');
     div.className = `flex-item`;
     div.dataset.albumId = id;
-<<<<<<< HEAD
-    div.href = './pictureGallery.html?id=' + id;
 
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    div.appendChild(checkBox);
->>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
-=======
->>>>>>> 2bc7266a7408130b32d1f8253ad961958fce0836
-
-    const cardcontent = document.createElement('div');
-    cardcontent.className= `card-content`;
-    label.appendChild(cardcontent);
-    
     const img = document.createElement('img');
     img.src = src;
-<<<<<<< HEAD
-    img.className = "images"
-    cardcontent.appendChild(img);
-
-    const content = document.createElement('div');
-    content.className = 'content';
-    cardcontent.appendChild(content);
-
-    
-    
-    const imgTitlediv = document.createElement('h4');
-    imgTitlediv.className = 'imgTitle';
-    imgTitlediv.textContent = `${imgTitle}`;
-    content.appendChild(imgTitlediv);
-
-    
-    const imgCommentdiv = document.createElement('p');
-    imgCommentdiv.className = 'imgComment';
-    imgCommentdiv.textContent = `${imgComment}`;
-    content.appendChild(imgCommentdiv);
-
-    const imgFlex = document.querySelector('.checkcontainer');
-    imgFlex.appendChild(label);
-     
-    
-   /* checkb.addEventListener("change", (e) => {
-        
-      if (e.target.checked) {
-        console.log("Checkbox is checked..");
-      } else {
-        console.log("Checkbox is not checked..");
-      }
-    });*/
-
-   /* const checkedItems = document.querySelector("input[name=checkbox]");*/
-    
-    
-
-    
-}
-
-
-
-    
-    
-
-
-   
-=======
     div.appendChild(img);
 
     const pTitle = document.createElement('p');
@@ -497,9 +336,6 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
 
     }
 }
-<<<<<<< HEAD
->>>>>>> 00ad35e48b79b09917d334abeb3b148d713a79a4
-=======
 
 // if (typeof picRating === 'undefined') {
 //     li1.textContent = "☆☆☆☆☆";
@@ -519,4 +355,3 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
 // if (picRating === "5") {
 //     li5.textContent = "★★★★★"
 // }
->>>>>>> 2bc7266a7408130b32d1f8253ad961958fce0836
