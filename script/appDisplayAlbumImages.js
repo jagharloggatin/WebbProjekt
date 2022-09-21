@@ -34,8 +34,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     checkBox();
 });
 
-// function onlyUnique(value, index, self) {
-//     return self.indexOf(value) === index;
+// function starEffects(){
+//
 // }
 
 function checkBox() {
@@ -85,22 +85,58 @@ function ratingButtonHandler() {
 
             let score = li[i].getAttribute('data-rate');
 
-            console.log("score: " + score);
 
+            let albumIndex;
+            let albumIndex2;
+
+            let ratingArray = [];
+
+            console.log("scoree: " + score);
 
             galleryJSON.albums.forEach(function (album) {
+                ratingArray.push(album.title);
+            });
+            console.log(ratingArray)
+
+                galleryJSON.albums.forEach(function (album) {
                 album.pictures.forEach(function (picture) {
                     if (parentDiv.dataset.pictureId === picture.id) {
-                        let albumIndex = galleryJSON.albums.indexOf(album);
+                        albumIndex = galleryJSON.albums.indexOf(album);
                         let pictureIndex = galleryJSON.albums[albumIndex].pictures.indexOf(picture);
+
                         console.log("pic index: " + pictureIndex);
                         galleryJSON.albums[albumIndex].pictures[pictureIndex].rating = score;
 
+                        let picObj = {
+                            id: Date.now().toString(36) + Math.random().toString(36).substring(2),
+                            title: picture.title,
+                            comment: picture.comment,
+                            imgLoRes: `${album.title.toLowerCase().replaceAll(' ', '-')}/${picture.imgLoRes}`,
+                            imgHighRes: `${album.title.toLowerCase().replaceAll(' ', '-')}/${picture.imgHiRes}`
+                        }
+
+                        if (!ratingArray.includes(score)) {
+                            let albumObj = {
+                                id: Date.now().toString(36) + Math.random().toString(36).substring(2),
+                                title: `${score}`,
+                                comment: "Rated Album",
+                                path: 'app-data/library/pictures',
+                                headerImage: "app-data/library/pictures/album-header/star.jpg",
+                                pictures: [],
+                            }
+                            galleryJSON.albums.push(albumObj);
+                        }
+                        for (let j = 0; j < galleryJSON.albums.length; j++) {
+                            if (galleryJSON.albums[j].title === score) {
+                                albumIndex2 = j
+                                console.log(albumIndex2)
+                            }
+                        }
+                        galleryJSON.albums[albumIndex2].pictures.push(picObj);
                     }
                 });
-            });
 
-            // console.log(galleryJSON.albums);
+            });
 
             galleryJSON = await myFetch(urlGetPost, 'POST', galleryJSON);
             console.log(galleryJSON)
@@ -108,13 +144,26 @@ function ratingButtonHandler() {
     }
 }
 
-async function myFetch(url, method = null, body = null) {
+// let pushStop = false;
+//
+// for (let j = 0; j < ratingArray.length; j++) {
+//     console.log(ratingArray[j]);
+//     if (ratingArray[j] !== score && !pushStop) {
+//         console.log("HELLO")
+//         pushStop = true;
+//     }
+//     console.log("ratingArray: " + ratingArray[j])
+// }
+// console.log(galleryJSON.albums);
+
+async function myFetch(url, method = null, body = null, score = null) {
     try {
 
         let res = await fetch(url, {
             method: method ?? 'GET',
             headers: {'content-type': 'application/json'},
-            body: body ? JSON.stringify(body) : null
+            body: body ? JSON.stringify(body) : null,
+            score: score ? JSON.stringify(score) : null
         });
 
         if (res.ok) {
@@ -251,31 +300,36 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
         li3.textContent = "☆"
         li4.textContent = "☆"
         li5.textContent = "☆"
-    } if(picRating === '1'){
+    }
+    if (picRating === '1') {
         li1.textContent = "★"
         li2.textContent = "☆"
         li3.textContent = "☆"
         li4.textContent = "☆"
         li5.textContent = "☆"
-    } if(picRating === '2'){
+    }
+    if (picRating === '2') {
         li1.textContent = "★"
         li2.textContent = "★"
         li3.textContent = "☆"
         li4.textContent = "☆"
         li5.textContent = "☆"
-    } if(picRating === '3'){
+    }
+    if (picRating === '3') {
         li1.textContent = "★"
         li2.textContent = "★"
         li3.textContent = "★"
         li4.textContent = "☆"
         li5.textContent = "☆"
-    } if(picRating === '4'){
+    }
+    if (picRating === '4') {
         li1.textContent = "★"
         li2.textContent = "★"
         li3.textContent = "★"
         li4.textContent = "★"
         li5.textContent = "☆"
-    } if(picRating === '5'){
+    }
+    if (picRating === '5') {
         li1.textContent = "★"
         li2.textContent = "★"
         li3.textContent = "★"

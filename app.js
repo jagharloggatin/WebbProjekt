@@ -17,7 +17,6 @@ const bodyParser = require('body-parser')
 let jsonParser = bodyParser.json()
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-
 const libraryDir = "app-data";
 const applicationDir = path.resolve('./');
 const libraryJsonPath = 'app-data/library/picture-library.json';
@@ -268,12 +267,24 @@ app.post('/api/picture/rating', jsonParser, (req, res) => {
 
     let library = req.body;
 
+    // console.log((`app-data/library/pictures/${req.score}`));
+
+    const dir = `app-data/library/pictures/${req.score}`;
+
     fs.writeFileSync(libraryJsonPath, JSON.stringify(library));
 
     res.json(library)
 
-    console.clear();
-    console.log(library.albums.pictures)
+    // console.log(library.albums.pictures.rating);
+
+    // let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+    //
+
+    //
+    // console.log(newPath)
+    //
+
+    // console.log(libraryJson.albums.pictures);
 
 });
 

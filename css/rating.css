@@ -38,6 +38,9 @@
     color: orange;
     cursor: pointer;
 }
+.rating .rating-item:after {
+    /*content: "★";*/
+}
 
 
 .rating2 {
