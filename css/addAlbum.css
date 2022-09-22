@@ -1,4 +1,4 @@
-.formContainer {
+/*.formContainer {
     margin: 5% 10% 0 10%;
 }
 
@@ -23,4 +23,96 @@ input {
 
 .album-wrap {
     margin: 0 auto;
+}*/
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+
+
+#formAddAlbum, #formAddPicture,#formRemovePicture{
+
+    max-width: 600px;
+    
+  margin:auto;
+  
+    border-radius: 15px;
+    border: 3px solid #ffff;
+   /* box-shadow: 0 4px 4px rgba(0, 0, 0.02);*/
+   
+    
 }
+
+
+input[list = listAlbums] {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  } 
+
+  input[list = removePicList] {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+  } 
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  }
+
+
+
+  input[multiple = multiple] {
+    background-color: #04AA6D;
+    width: 100%;
+    border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  } 
+
+  input[id = submitButton] {
+    background-color: #04AA6D;
+    width: 100%;
+    border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  } 
+
+  input[id = submitRemovePicture] {
+    background-color: #04AA6D;
+    width: 100%;
+    border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  } 
+
+
+  @media screen and (max-width: 600px) {
+    #formEditAlbum, #formEditPicture{
+      width: 100%;
+      margin-top: 0;
+    }
+  }

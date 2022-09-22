@@ -30,9 +30,18 @@
 }
 
 .contentContainer {
-    padding: 0;
+    /*padding: 0;
     margin: 0;
-    width: 25%;
+    width: 25%;*/
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    height: 20%;
+    width: 20%;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 3px solid #ffff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0.02);
 }
 
 .contentFrame {
@@ -50,6 +59,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    
 }
 
 .imgTitle {
@@ -76,6 +86,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    
 }
 
 .flex-item img {
@@ -90,11 +101,13 @@
     cursor: pointer;
     position: relative;
     transition: .5s ease-in-out;
+    
 }
 
 .flex-item input, .check {
     z-index: 2;
-    margin-top: 2%;
+    margin-top: 3%;
+    
 
 }
 
@@ -277,21 +290,39 @@
 
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
 
 
     .contentContainer {
         padding: 0;
         margin: 0;
-        width: 50%;
+        width: 100%;
+    }
+
+    .flex-item img{
+        max-height: 30vh;
+    max-width: 70vw;
+    min-height: 70vh;
+    min-width: 70vw;
+    padding: 4px;
+    transform:scale(1.5);
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    position: relative;
+    transition: .5s ease-in-out;
     }
 
     .imgTitle {
-        font-size: 8px;
+        /*font-size: 8px;*/
+        font-size: 50%;
+    
     }
 
     .imgComment {
-        font-size: 7px;
+        /*font-size: 7px;*/
+        font-size: 50%;
+    text-align: end;
+    
     }
 }
-
