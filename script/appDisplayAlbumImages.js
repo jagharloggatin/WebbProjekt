@@ -93,6 +93,13 @@ function ratingButtonHandler() {
 
             console.log("scoree: " + score);
 
+            let scoreStars;
+            for (let j = 0; j < score; j++) {
+                scoreStars += "★"
+            }
+
+            console.log(scoreStars)
+
             galleryJSON.albums.forEach(function (album) {
                 ratingArray.push(album.title);
             });
@@ -119,7 +126,7 @@ function ratingButtonHandler() {
                             let albumObj = {
                                 id: Date.now().toString(36) + Math.random().toString(36).substring(2),
                                 title: `${score}`,
-                                comment: "Rated Album",
+                                comment: `${scoreStars}`,
                                 path: 'app-data/library/pictures',
                                 headerImage: "app-data/library/pictures/album-header/star.jpg",
                                 pictures: [],
@@ -144,17 +151,6 @@ function ratingButtonHandler() {
     }
 }
 
-// let pushStop = false;
-//
-// for (let j = 0; j < ratingArray.length; j++) {
-//     console.log(ratingArray[j]);
-//     if (ratingArray[j] !== score && !pushStop) {
-//         console.log("HELLO")
-//         pushStop = true;
-//     }
-//     console.log("ratingArray: " + ratingArray[j])
-// }
-// console.log(galleryJSON.albums);
 
 async function myFetch(url, method = null, body = null, score = null) {
     try {
