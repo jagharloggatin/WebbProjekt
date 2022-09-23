@@ -11,7 +11,7 @@
   margin:auto;
   
     border-radius: 15px;
-    border: 3px solid #ffff;
+    border: 3px solid #f8f8f8 /* #ffff*/;
    /* box-shadow: 0 4px 4px rgba(0, 0, 0.02);*/
    
     
@@ -45,6 +45,7 @@ input[type=text] {
     border: none;
     border-radius: 4px;
     background-color: #f1f1f1;
+    
   } 
 
 
