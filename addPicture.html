@@ -73,7 +73,7 @@
             </nav>
         </div>
 
-        <h2>P I C T U R E C R E A T E</h2>
+        <h1>Add Picture</h1>
 
         <form id='formAddPicture' action="/api/upload/picture" enctype="multipart/form-data" method="post">
             <label>Choose an Album to upload to: </label>
@@ -82,7 +82,8 @@
             </datalist>
             <div>Text field title: <input type="text" name="pictureTitle" /></div>
             <div>Text field comment: <input type="text" name="pictureComment" /></div>
-            <div>File: <input type="file" name="pictureToUpload" multiple="multiple" /></div>
+            <div>Small File <span class="fileSize">(Less than 2MB):</span> <input type="file" name="pictureToUpload" multiple="multiple" /></div>
+            <div>Large File <span class="fileSize">(2MB or Above):</span> <input type="file" name="pictureToUpload2" multiple="multiple" /></div>
             <input id='submitButton' type="submit" value="Upload" />
         </form>
 

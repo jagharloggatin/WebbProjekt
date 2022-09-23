@@ -8,6 +8,7 @@
 //https://www.npmjs.com/package/cors
 //https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
+
 const express = require('express');
 const formidable = require('formidable');
 const path = require("path");
@@ -15,7 +16,7 @@ const fs = require("fs");
 const cors = require('cors');
 const bodyParser = require('body-parser')
 let jsonParser = bodyParser.json()
-let urlencodedParser = bodyParser.urlencoded({ extended: false })
+let urlencodedParser = bodyParser.urlencoded({extended: false})
 
 const libraryDir = "app-data";
 const applicationDir = path.resolve('./');
@@ -96,60 +97,109 @@ app.post('/api/upload/picture', (req, res) => {
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
-        if (!fileIsValidImage(files.pictureToUpload)) {
-            alert("wrong file format, try again!");
-            return;
-        }
 
-        let pictureFileName;
-        let pictureComment = stringHandler(fields.pictureComment);
+            let pictureFileName;
+            let pictureFileName2;
+            let pictureComment = stringHandler(fields.pictureComment);
 
-        let oldPath = files.pictureToUpload.filepath;
-        let pictureTitle = stringHandler(fields.pictureTitle);
-        let pictureObj = {};
+            let oldPath = files.pictureToUpload.filepath;
+            let oldPath2 = files.pictureToUpload2.filepath;
+            let pictureTitle = stringHandler(fields.pictureTitle);
+            let pictureObj = {};
 
-        const imageSize = files.pictureToUpload;
+            const imageSize2 = files.pictureToUpload2;
+            const imageSize = files.pictureToUpload;
 
-        if ((imageSize.size / (1024 * 1024)) > 2) {
-            pictureFileName = "large~" + stringHandler(files.pictureToUpload.originalFilename);
-        } else {
-            pictureFileName = "small~" + stringHandler(files.pictureToUpload.originalFilename);
-        }
-        let uploadPath = `app-data/library/pictures/${fields.selectAlbum}/` + pictureFileName;
+            let validFiles = false;
+            let highRes = false;
+            let lowRes = false;
 
-        libraryJson.albums.forEach(function (alb) {
-            if (alb.title === fields.selectAlbum) {
-                if ((imageSize.size / (1024 * 1024)) > 2) {
-                    pictureObj = {
-                        id: uniqueId(),
-                        title: pictureTitle,
-                        comment: pictureComment,
-                        imgLoRes: "none",
-                        imgHighRes: pictureFileName,
-                    };
-                } else {
-                    pictureObj = {
-                        id: uniqueId(),
-                        title: pictureTitle,
-                        comment: pictureComment,
-                        imgLoRes: pictureFileName,
-                        imgHighRes: "none",
-                    };
-                }
-                alb.pictures.push(pictureObj);
+            console.log(imageSize.size);
+            console.log(imageSize2.size);
+
+            if (imageSize.size === 0 && imageSize2.size === 0) {
+                return res.status(400).json("no images were uploaded");
             }
-        });
+            if (imageSize.size > 0 || imageSize2.size > 0) {
 
-        fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function (err) {
-            res.sendStatus(501);
-            return;
-        });
+                if ((imageSize.size / (1024 * 1024)) < 2) {
+                    pictureFileName = "small~" + stringHandler(files.pictureToUpload.originalFilename);
+                    lowRes = fileIsValidImage(files.pictureToUpload);
+                }
 
-        const data = fs.readFileSync(oldPath);
-        fs.writeFileSync(uploadPath, data);
+                if ((imageSize2.size / (1024 * 1024)) > 2) {
+                    pictureFileName2 = "orig~" + stringHandler(files.pictureToUpload2.originalFilename);
+                    highRes = fileIsValidImage(files.pictureToUpload2);
+                }
+            }
 
-        res.sendStatus(200);
-    });
+            if (!highRes && !lowRes) {
+                return res.status(400).json("not a valid image");
+            }
+
+            let uploadPath = `app-data/library/pictures/${fields.selectAlbum}/` + pictureFileName;
+            let uploadPath2 = `app-data/library/pictures/${fields.selectAlbum}/` + pictureFileName2;
+
+            libraryJson.albums.forEach(function (alb) {
+                if (alb.title === fields.selectAlbum) {
+                    if (highRes && !lowRes) {
+                        pictureObj = {
+                            id: uniqueId(),
+                            title: pictureTitle,
+                            comment: pictureComment,
+                            imgLoRes: "none",
+                            imgHiRes: pictureFileName2,
+                        };
+                    }
+                    if (!highRes && lowRes) {
+                        pictureObj = {
+                            id: uniqueId(),
+                            title: pictureTitle,
+                            comment: pictureComment,
+                            imgLoRes: pictureFileName,
+                            imgHiRes: "none",
+                        };
+                    }
+                    if (highRes && lowRes) {
+                        pictureObj = {
+                            id: uniqueId(),
+                            title: pictureTitle,
+                            comment: pictureComment,
+                            imgLoRes: pictureFileName,
+                            imgHiRes: pictureFileName2,
+                        };
+                    }
+                    alb.pictures.push(pictureObj);
+                }
+            });
+
+            fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function (err) {
+                res.sendStatus(501);
+                return;
+            });
+
+            if (highRes && lowRes) {
+                const data = fs.readFileSync(oldPath);
+                fs.writeFileSync(uploadPath, data);
+
+                const data2 = fs.readFileSync(oldPath2);
+                fs.writeFileSync(uploadPath2, data2);
+            }
+
+            if (!highRes && lowRes) {
+                const data = fs.readFileSync(oldPath);
+                fs.writeFileSync(uploadPath, data);
+            }
+
+            if (highRes && !lowRes) {
+                const data2 = fs.readFileSync(oldPath2);
+                fs.writeFileSync(uploadPath2, data2);
+            }
+
+            res.sendStatus(200);
+        }
+    )
+    ;
 });
 
 //EDIT ALBUMS
@@ -217,7 +267,7 @@ app.post('/api/remove/picture', (req, res) => {
 
         libraryJson.albums.forEach(function (alb) {
             alb.pictures.forEach(function (picture) {
-                if(fields.selectedPictureRemove === picture.title) {
+                if (fields.selectedPictureRemove === picture.title) {
 
                     let index = alb.pictures.indexOf(picture)
                     let element = alb.pictures.splice(index, 1)

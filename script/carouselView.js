@@ -12,8 +12,10 @@ let i = 0;
 window.addEventListener('DOMContentLoaded', async () => {
 
     let imageSlide = JSON.parse(sessionStorage.getItem("imageInfo")) || []
+    const resolution = JSON.parse(localStorage.getItem("resolution")) || []
 
     console.log(imageSlide.length)
+    console.log("imgSlide:" +  imageSlide);
 
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
@@ -21,13 +23,21 @@ window.addEventListener('DOMContentLoaded', async () => {
         for (const picture of album.pictures) {
             imageSlide.forEach(function (picId) {
                 if (picId === picture.id) {
-                    if (typeof picture.imgHiRes === 'undefined') {
+                    console.log("FOUND")
+
+                    if (typeof picture.imgLoRes === 'undefined') {
                         let index = imageSlide.indexOf('undefined')
+                        console.log(index)
                         imageSlide.splice(index, 1);
                         console.log(imageSlide);
 
                     } else {
-                        slideImages.push(`${album.path}/${picture.imgHiRes}`)
+                        if (resolution === "lowRes" || resolution.length === 0) {
+                            slideImages.push(`${album.path}/${picture.imgLoRes}`)
+                        }
+                        if (resolution === "highRes") {
+                            slideImages.push(`${album.path}/${picture.imgHiRes}`)
+                        }
                     }
                 }
             });

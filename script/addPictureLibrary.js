@@ -20,13 +20,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 function renderUploadPicture(albumTitle) {
 
     const option = document.createElement('option');
-    option.textContent = albumTitle;
-    option.value = albumTitle;
+
+    if(!containsNumber(albumTitle)){
+        option.textContent = albumTitle;
+        option.value = albumTitle;
+    }
 
     const albumFlex = document.querySelector('#listAlbums');
     albumFlex.appendChild(option);
 }
 
+export function containsNumber(str) {
+    return /\d/.test(str);
+}
 
 
 

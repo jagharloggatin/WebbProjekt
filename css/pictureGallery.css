@@ -12,7 +12,7 @@
     font-family: "Aboreto", sans-serif;
 }
 
-.switchBtn div{
+.switchBtn div {
     display: flex;
     letter-spacing: 2px;
     justify-content: space-evenly;
@@ -20,12 +20,12 @@
     background-color: black;
 }
 
-.switchBtn div a{
+.switchBtn div a {
     text-decoration: none;
     color: white;
 }
 
-.switchBtn div a:last-child{
+.switchBtn div a:last-child {
     margin-left: 5%;
 }
 
@@ -49,17 +49,18 @@
 }
 
 .image-wrap {
-/*justify-content: center;*/
+    /*justify-content: center;*/
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     text-decoration: none;
 }
+
 .image-item {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
+
 }
 
 .imgTitle {
@@ -86,7 +87,12 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    
+
+}
+
+.fileSize {
+    font-weight: 20;
+    text-transform: uppercase;
 }
 
 .flex-item img {
@@ -95,19 +101,19 @@
     min-height: 30vh;
     min-width: 30vw;
     padding: 4px;
-    transform:scale(1.5);
+    transform: scale(1.5);
     object-fit: cover;
     object-position: 50% 50%;
     cursor: pointer;
     position: relative;
     transition: .5s ease-in-out;
-    
+
 }
 
 .flex-item input, .check {
     z-index: 2;
     margin-top: 3%;
-    
+
 
 }
 
@@ -126,9 +132,9 @@
 
 .popup-div {
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
-    background: rgba(0,0,0,.8);
+    background: rgba(0, 0, 0, .8);
     z-index: 100;
     height: 100%;
     width: 100%;
@@ -147,7 +153,7 @@
     display: none;
 }
 
-.popup-div .closePic{
+.popup-div .closePic {
     color: white;
     z-index: 101;
     top: 5%;
@@ -157,7 +163,7 @@
     float: right;
 }
 
-.popup-div .next{
+.popup-div .next {
     color: white;
     z-index: 101;
     top: 50%;
@@ -167,7 +173,7 @@
     float: right;
 }
 
-.popup-div .prev{
+.popup-div .prev {
     color: white;
     z-index: 101;
     top: 50%;
@@ -220,7 +226,9 @@
     z-index: 3;
     position: absolute;
     transform: scale(2);
+
 }
+
 
 
 .popup-div .picRatingScore {
@@ -241,7 +249,7 @@
         width: 250px;
     }
 
-    .popup-div span{
+    .popup-div span {
         font-size: 100%;
     }
 
@@ -263,6 +271,7 @@
         color: white;
     }
 }
+
 @media screen and (max-width: 1400px) {
     .imgComment {
         font-size: 8px;
@@ -299,30 +308,30 @@
         width: 100%;
     }
 
-    .flex-item img{
+    .flex-item img {
         max-height: 30vh;
-    max-width: 70vw;
-    min-height: 70vh;
-    min-width: 70vw;
-    padding: 4px;
-    transform:scale(1.5);
-    object-fit: cover;
-    object-position: 50% 50%;
-    cursor: pointer;
-    position: relative;
-    transition: .5s ease-in-out;
+        max-width: 70vw;
+        min-height: 70vh;
+        min-width: 70vw;
+        padding: 4px;
+        transform: scale(1.5);
+        object-fit: cover;
+        object-position: 50% 50%;
+        cursor: pointer;
+        position: relative;
+        transition: .5s ease-in-out;
     }
 
     .imgTitle {
         /*font-size: 8px;*/
         font-size: 50%;
-    
+
     }
 
     .imgComment {
         /*font-size: 7px;*/
         font-size: 50%;
-    text-align: end;
-    
+        text-align: end;
+
     }
 }

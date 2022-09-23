@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     console.log(ratedPicture)
     for (const album of library.albums) {
         for (const picture of album.pictures) {
-            if (ratedPicture === picture.rating) {
+            if (ratedPicture == picture.rating) {
                 renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating);
             }
         }

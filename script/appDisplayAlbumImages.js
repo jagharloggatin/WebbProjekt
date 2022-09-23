@@ -8,22 +8,28 @@ let library;
 window.addEventListener('DOMContentLoaded', async () => {
 
     const resolution = JSON.parse(localStorage.getItem("resolution")) || []
-
     const savedAlbumId = JSON.parse(localStorage.getItem("selectedId")) || []
+
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 
     for (const album of library.albums) {
         if (album.id === savedAlbumId) {
             for (const picture of album.pictures) {
+
+
+                console.log(picture)
+                // console.log(abc)
+                console.log(typeof picture.imgLoRes);
                 if (resolution === "lowRes" || resolution.length === 0) {
                     if (typeof picture.imgLoRes !== 'undefined') {
-                        renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating);
+                        renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating, album.title);
+                        console.log(picture.imgLoRes)
                     }
                 }
                 if (resolution === "highRes") {
-                    // console.log(typeof picture.imgHiRes);
+                    console.log(picture.imgHiRes);
                     if (typeof picture.imgHiRes !== 'undefined') {
-                        renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating);
+                        renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating, album.title);
                     }
                 }
             }
@@ -66,6 +72,7 @@ function checkBox() {
 }
 
 
+//ratingsystem
 function ratingButtonHandler() {
 
     const urlGetPost = 'http://localhost:3000/api/picture/rating';
@@ -93,9 +100,9 @@ function ratingButtonHandler() {
 
             console.log("scoree: " + score);
 
-            let scoreStars;
+            let scoreStars = "";
             for (let j = 0; j < score; j++) {
-                scoreStars += "★"
+                scoreStars += "★";
             }
 
             console.log(scoreStars)
@@ -105,7 +112,7 @@ function ratingButtonHandler() {
             });
             console.log(ratingArray)
 
-                galleryJSON.albums.forEach(function (album) {
+            galleryJSON.albums.forEach(function (album) {
                 album.pictures.forEach(function (picture) {
                     if (parentDiv.dataset.pictureId === picture.id) {
                         albumIndex = galleryJSON.albums.indexOf(album);
@@ -116,10 +123,10 @@ function ratingButtonHandler() {
 
                         let picObj = {
                             id: Date.now().toString(36) + Math.random().toString(36).substring(2),
-                            title: picture.title,
-                            comment: picture.comment,
+                            title: `${picture.title}`,
+                            comment: `${picture.comment}`,
                             imgLoRes: `${album.title.toLowerCase().replaceAll(' ', '-')}/${picture.imgLoRes}`,
-                            imgHighRes: `${album.title.toLowerCase().replaceAll(' ', '-')}/${picture.imgHiRes}`
+                            imgHiRes: `${album.title.toLowerCase().replaceAll(' ', '-')}/${picture.imgHiRes}`
                         }
 
                         if (!ratingArray.includes(score)) {
@@ -184,6 +191,7 @@ async function myFetch(url, method = null, body = null, score = null) {
 }
 
 
+//Resolution options, high or low
 function renderResolutionButtons() {
     const btnContainer = document.createElement('div');
 
@@ -215,8 +223,8 @@ function renderResolutionButtons() {
     });
 }
 
-
-function renderImages(src, id, imgTitle, imgComment, picRating) {
+//Renders all the images and content of the page
+function renderImages(src, id, imgTitle, imgComment, picRating, albumTitle) {
 
     const div = document.createElement('a');
     div.className = `flex-item`;
@@ -232,7 +240,7 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
     div.appendChild(pTitle);
 
     const pComment = document.createElement('p');
-    pComment.textContent = imgComment.substring(0, 40)
+    pComment.textContent = imgComment.substring(0,40)
     pComment.className = "imgComment";
     div.appendChild(pComment);
 
@@ -333,7 +341,6 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
         li5.textContent = "★"
     }
 
-
     rating.appendChild(li5);
     rating.appendChild(li4);
     rating.appendChild(li3);
@@ -343,7 +350,10 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
     const imgFlex = document.querySelector('.image-wrap');
 
     content.appendChild(div)
-    content.appendChild(rating);
+
+    if((!containsNumber(albumTitle))){
+        content.appendChild(rating);
+    }
 
     imgFlex.appendChild(content);
 
@@ -363,22 +373,13 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
 
     const contentDiv = document.createElement('div');
 
-
     let closePic = document.createElement('span');
     closePic.className = "closePic"
-
-    // let next = document.createElement('span');
-    // next.className = "next"
-    //
-    // let prev = document.createElement('span');
-    // prev.className = "prev"
 
     contentDiv.appendChild(popUpTitle);
     contentDiv.appendChild(popUpComment);
     contentDiv.appendChild(picRatingScore);
     contentDiv.appendChild(closePic);
-    // contentDiv.appendChild(next);
-    // contentDiv.appendChild(prev);
 
     popUpDiv.appendChild(popUpImg);
     let popUp = document.querySelector('.popup-div');
@@ -394,10 +395,13 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
             popUpImg.style.display = "flex";
             popUpImg.src = src;
             popUpTitle.textContent = imgTitle;
-            picRatingScore.textContent = `rating is: ${picRating} stars`;
+            if (typeof picRating === 'undefined') {
+                picRatingScore.textContent = "picture haven't been rated yet"
+            } else {
+                picRatingScore.textContent = `rating is: ${picRating} stars`;
+
+            }
             closePic.textContent = "X";
-            // next.textContent = ">"
-            // prev.textContent = "<"
 
             closePic.addEventListener('click', function () {
                 popUp.style.display = "none";
@@ -406,133 +410,11 @@ function renderImages(src, id, imgTitle, imgComment, picRating) {
                 picRatingScore.textContent = ``;
                 closePic.textContent = "";
                 popUpComment.textContent = "";
-                // next.textContent = ""
-                // prev.textContent = ""
             })
         });
     }
 }
 
-
-// let li = document.querySelectorAll('.rating-item')
-// let pic = document.querySelectorAll('.flex-item')
-//
-// let parentIndex = [];
-// // let scoreArray = [];
-//
-//
-// let index;
-// pic.forEach(function (pics) {
-//
-//     let parentDiv = pics.parentNode;
-//
-//     console.log(parentDiv.dataset.pictureRating);
-//
-//     // if (typeof parentDiv.dataset.pictureRating === 'undefined') {
-//     //
-//     // }
-//     parentIndex.push(parentDiv.dataset.pictureRating);
-// })
-//
-// parentIndex.shift();
-// console.log(parentIndex);
-//
-// for (const album of library.albums) {
-//     if (album.id === savedAlbumId) {
-//         for (const picture of album.pictures) {
-//             console.log(picture.rating);
-//         }
-//     }
-// }
-
-// liStar.textContent = "☆";
-//
-// for (let i = 0; i < parentIndex.length; i++) {
-//
-// }
-// for (const album of library.albums) {
-//     if (album.id === savedAlbumId) {
-//         for (const picture of album.pictures) {
-//             if(picture.rating === "1") {
-//                 liStar.textContent = "☆";
-//
-//             }
-//         }
-//     }
-// }
-
-// parentIndex = parentIndex.filter(onlyUnique);
-
-
-// for (let i = 0; i < parentIndex.length; i++) {
-//     li.forEach(function(event){
-//
-//
-//     });
-// }
-
-//
-
-
-// console.log(event.target.getAttribute("data-rate"));
-// for (const album of library.albums) {
-//     if (album.id === savedAlbumId) {
-//         for (const picture of album.pictures) {
-//             if (parentDiv.dataset.pictureId === picture.id) {
-//                 if(picture.rating === "1"){
-//                     this.textContent = "★";
-//                 }
-//             }
-//         }
-//     }
-// }
-
-
-// library.albums.forEach(function (album) {
-//     album.pictures.forEach(function (picture) {
-//         if (parentDiv.dataset.pictureId === picture.id) {
-//             let albumIndex = library.albums.indexOf(album);
-//             let pictureIndex = library.albums[albumIndex].pictures.indexOf(picture);
-//             console.log("pic index: " + pictureIndex);
-//             library.albums[albumIndex].pictures[pictureIndex].rating
-//
-//         }
-//     });
-// });
-
-// liStar.textContent = "☆";
-//
-
-
-//
-// for (const album of library.albums) {
-//     if (album.id === savedAlbumId) {
-//         for (const picture of album.pictures) {
-//
-//             console.log(typeof picture.rating);
-//             if (typeof picture.rating !== "undefined") {
-//                 // console.log(picture.rating, picture.id);
-//             }
-//
-//             if (typeof picture.rating === "undefined") {
-//                 // console.log(picture.rating, picture.id);
-//             }
-//
-//         }
-//     }
-// }
-
-
-// for (const album of library.albums) {
-//     for (const picture of album.pictures) {
-//         for (let i = 0; i < 10; i++) {
-//             if (typeof picture.rating === 'undefined') {
-//                 li[i].textContent = "☆";
-//             }
-//             // if (picture.rating === '1') {
-//             //     li[4].textContent = "★";
-//             // }
-//             // console.log(li[i]);
-//         }
-//     }
-// }
+function containsNumber(str) {
+    return /\d/.test(str);
+}
