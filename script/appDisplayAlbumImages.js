@@ -23,13 +23,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 if (resolution === "lowRes" || resolution.length === 0) {
                     if (typeof picture.imgLoRes !== 'undefined') {
                         renderImages(`${album.path}/${picture.imgLoRes}`, picture.id, picture.title, picture.comment, picture.rating, album.title);
-                        console.log(picture.imgLoRes)
                     }
                 }
                 if (resolution === "highRes") {
                     console.log(picture.imgHiRes);
                     if (typeof picture.imgHiRes !== 'undefined') {
                         renderImages(`${album.path}/${picture.imgHiRes}`, picture.id, picture.title, picture.comment, picture.rating, album.title);
+
                     }
                 }
             }
@@ -39,6 +39,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     ratingButtonHandler()
     checkBox();
 });
+
 
 // function starEffects(){
 //

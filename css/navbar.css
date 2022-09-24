@@ -22,6 +22,7 @@ body {
 
 .container {
     display: flex;
+
 }
 
 .container ul {
@@ -41,6 +42,7 @@ body {
     text-decoration: none;
     display: flex;
     list-style: none;
+
 }
 
 .uLinks li:hover {
@@ -57,8 +59,9 @@ body {
     color: #444040;
     margin: 20px;
     display: block;
-    font-family: "Arial", sans-serif;
+    font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .toggle-button {
